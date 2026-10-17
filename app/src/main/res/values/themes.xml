@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Caloriengine" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">#00FF66</item>
+        <item name="colorPrimaryVariant">#008837</item>
+        <item name="colorOnPrimary">#050607</item>
+        <item name="colorSecondary">#00FF66</item>
+        <item name="colorOnSecondary">#050607</item>
+        <item name="android:statusBarColor">#050607</item>
+    </style>
+
+    <!-- Translucent Dialog Theme for Quick Add Homescreen Popup -->
+    <style name="Theme.Caloriengine.TranslucentDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.75</item>
+    </style>
+</resources>

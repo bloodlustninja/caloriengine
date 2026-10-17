@@ -1,0 +1,268 @@
+:root {
+  --bg: #08090a;
+  --primary: #00ff66;
+  --border: #1b382b;
+  --glow: rgba(0, 255, 102, 0.2);
+  --font: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--primary);
+  font-family: var(--font);
+  text-transform: uppercase;
+}
+
+.app-container {
+  padding: 1rem;
+  padding-bottom: 80px; /* Space for dock */
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* METABOLIC_CORE Styles */
+.hardware-inputs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 0.55rem;
+  color: var(--border);
+  margin-bottom: 4px;
+}
+
+.input-group input {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--primary);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  padding: 4px;
+  text-align: center;
+}
+
+.goal-selector {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.goal-selector button {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-family: var(--font);
+  font-size: 0.65rem;
+  padding: 6px 2px;
+  cursor: pointer;
+}
+
+.goal-selector button.active {
+  background: var(--primary);
+  color: var(--bg);
+  box-shadow: 0 0 10px var(--glow);
+}
+
+.slider-control {
+  margin-bottom: 1.5rem;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  margin-bottom: 8px;
+}
+
+.delta-readout {
+  color: #fff;
+  text-shadow: 0 0 5px var(--glow);
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: var(--border);
+  height: 2px;
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 20px;
+  background: var(--primary);
+  border: 1px solid var(--bg);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--glow);
+}
+
+/* Progress Bar */
+.progress-container {
+  margin-top: 1rem;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  margin-bottom: 6px;
+}
+
+.led-bar {
+  display: flex;
+  gap: 3px;
+  height: 10px;
+}
+
+.led-block {
+  flex: 1;
+  background: var(--border);
+}
+
+.led-block.active {
+  background: var(--primary);
+  box-shadow: 0 0 5px var(--glow);
+}
+
+/* Intake Modules */
+.item-table {
+  margin-bottom: 1rem;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.item-kcal {
+  color: var(--primary);
+  text-shadow: 0 0 5px var(--glow);
+}
+
+.no-data {
+  font-size: 0.7rem;
+  color: var(--border);
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.unit-actions {
+  text-align: right;
+}
+
+.terminal-button {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  font-family: var(--font);
+  font-size: 0.75rem;
+  padding: 6px 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.terminal-button.pulsing {
+  border-width: 2px;
+}
+
+.pulse-glow {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 5px var(--glow); opacity: 0.8; }
+  50% { box-shadow: 0 0 20px var(--glow); opacity: 1; }
+  100% { box-shadow: 0 0 5px var(--glow); opacity: 0.8; }
+}
+
+/* Bottom Dock */
+.bottom-dock {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(8, 9, 10, 0.95);
+  border-top: 1px solid var(--border);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(8px);
+  z-index: 50;
+}
+
+.diet-selector select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  font-family: var(--font);
+  font-size: 0.75rem;
+  padding: 6px;
+  outline: none;
+}
+
+/* Terminal Dialog */
+.terminal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 2rem;
+}
+
+.terminal-dialog {
+  width: 100%;
+  max-width: 450px;
+  background: var(--bg);
+  border: 1px solid var(--primary);
+  padding: 2rem;
+  box-shadow: 0 0 30px rgba(0, 255, 102, 0.1);
+}
+
+.prompt {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.cursor {
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink { to { visibility: hidden; } }
+
+.terminal-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--primary);
+  color: var(--primary);
+  font-family: var(--font);
+  font-size: 1.1rem;
+  outline: none;
+  padding: 8px 0;
+}
+
+.dialog-actions {
+  margin-top: 1.5rem;
+  text-align: right;
+}

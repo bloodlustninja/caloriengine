@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER_NUTRITION_TRACKER</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="App.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // Import-like behavior for the standalone version
+        const { useState, useEffect } = React;
+
+        // --- COMPONENTS FROM App.jsx (adapted for single file) ---
+
+        const THEME = {
+            bg: '#08090a',
+            primary: '#00ff66',
+            border: '#1b382b',
+            glow: 'rgba(0, 255, 102, 0.2)',
+            font: "'JetBrains Mono', 'Courier New', monospace"
+        };
+
+        const CyberPanel = ({ title, unit, children, className = "" }) => (
+            <div className={`cyber-panel ${className}`} style={{
+                border: `1px solid ${THEME.border}`,
+                background: 'rgba(0, 15, 5, 0.6)',
+                padding: '1.2rem',
+                position: 'relative',
+                marginBottom: '1rem',
+                clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)'
+            }}>
+                <div className="panel-header" style={{
+                    fontSize: '0.65rem',
+                    color: THEME.border,
+                    marginBottom: '0.8rem',
+                    letterSpacing: '1px'
+                }}>
+                    {unit} // {title.toUpperCase()}
+                </div>
+                {children}
+            </div>
+        );
+
+        const TerminalButton = ({ label, onClick, variant = 'primary', pulsing = false }) => (
+            <button
+                onClick={onClick}
+                className={`terminal-button ${pulsing ? 'pulse-glow' : ''} ${variant}`}
+            >
+                {label}
+            </button>
+        );
+
+        const ProgressBar = ({ current, target }) => {
+            const percentage = Math.min((current / target) * 100, 100);
+            const blocks = 20;
+            const filledBlocks = Math.floor((percentage / 100) * blocks);
+
+            return (
+                <div className="progress-container">
+                    <div className="progress-label">
+                        <span>CONSUMPTION_METER</span>
+                        <span>{current} / {target} KCAL</span>
+                    </div>
+                    <div className="led-bar">
+                        {Array.from({ length: blocks }).map((_, i) => (
+                            <div
+                                key={i}
+                                className={`led-block ${i < filledBlocks ? 'active' : ''}`}
+                            />
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        function App() {
+            const [stats, setStats] = useState({ weight: 78.5, height: 182, age: 28, gender: 'M' });
+            const [goal, setGoal] = useState('MAINTAIN');
+            const [target, setTarget] = useState(2500);
+            const [consumed, setConsumed] = useState(1420);
+            const [isDialogOpen, setDialogOpen] = useState(false);
+            const [diet, setDiet] = useState('BALANCED');
+            const [intakeUnits, setIntakeUnits] = useState([
+                { id: 'UNIT_01', label: 'BREAKFAST', items: [{ name: 'OATS_REPLICATED', kcal: 450 }] },
+                { id: 'UNIT_02', label: 'LUNCH', items: [{ name: 'SYNTH_CHICKEN', kcal: 620 }, { name: 'GLUCO_BAR', kcal: 150 }] },
+                { id: 'UNIT_03', label: 'SNACKS', items: [{ name: 'CAFFEINATED_INFUSION', kcal: 200 }] },
+                { id: 'UNIT_04', label: 'DINNER', items: [] },
+            ]);
+
+            const delta = target - 2150;
+
+            const handleAiRebalance = () => {
+                alert("AI SUGGESTION: 1. PROTEIN_CONCENTRATE (250 KCAL)\n2. LEAFY_MATTER_V2 (50 KCAL)");
+            };
+
+            return (
+                <div className="app-container">
+                    <CyberPanel title="METABOLIC_CORE" unit="SYS_01">
+                        <div className="hardware-inputs">
+                            <div className="input-group"><label>WGT</label><input type="text" value={stats.weight} readOnly /></div>
+                            <div className="input-group"><label>HGT</label><input type="text" value={stats.height} readOnly /></div>
+                            <div className="input-group"><label>AGE</label><input type="text" value={stats.age} readOnly /></div>
+                            <div className="input-group"><label>GEN</label><input type="text" value={stats.gender} readOnly /></div>
+                        </div>
+                        <div className="goal-selector">
+                            {['CUT', 'MAINTAIN', 'BULK'].map(g => (
+                                <button key={g} className={goal === g ? 'active' : ''} onClick={() => setGoal(g)}>[{g} // {g === 'CUT' ? '-DEFICIT' : g === 'BULK' ? '+SURPLUS' : '0'}]</button>
+                            ))}
+                        </div>
+                        <div className="slider-control">
+                            <div className="slider-header"><label>TARGET_CALORIES</label><span className="delta-readout">DELTA: {delta > 0 ? '+' : ''}{delta} KCAL</span></div>
+                            <input type="range" min="1000" max="4000" value={target} onChange={(e) => setTarget(parseInt(e.target.value))} />
+                        </div>
+                        <ProgressBar current={consumed} target={target} />
+                    </CyberPanel>
+
+                    <div className="intake-grid">
+                        {intakeUnits.map(unit => (
+                            <CyberPanel key={unit.id} title={unit.label} unit={unit.id}>
+                                <div className="item-table">
+                                    {unit.items.length > 0 ? unit.items.map((item, i) => (
+                                        <div key={i} className="item-row"><span>{item.name}</span><span>{item.kcal} KCAL</span></div>
+                                    )) : <div className="no-data">STATUS: EMPTY</div>}
+                                </div>
+                                <div className="unit-actions"><TerminalButton label="[ + LOG ]" onClick={() => setDialogOpen(true)} /></div>
+                            </CyberPanel>
+                        ))}
+                    </div>
+
+                    <div className="bottom-dock">
+                        <div className="diet-selector">
+                            <select value={diet} onChange={(e) => setDiet(e.target.value)}>
+                                <option value="BALANCED">DIET // BALANCED</option>
+                                <option value="KETO">DIET // KETO</option>
+                                <option value="HIGH_PROTEIN">DIET // HIGH_PROTEIN</option>
+                            </select>
+                        </div>
+                        <TerminalButton label="// AI_REBALANCE" variant="pulsing" pulsing onClick={handleAiRebalance} />
+                    </div>
+
+                    {isDialogOpen && (
+                        <div className="terminal-overlay">
+                            <div className="terminal-dialog">
+                                <div className="prompt">> ENTER INTAKE STRING... <span className="cursor">_</span></div>
+                                <input autoFocus className="terminal-input" onKeyDown={(e) => e.key === 'Enter' && setDialogOpen(false)} />
+                                <div className="dialog-actions"><TerminalButton label="ABORT" onClick={() => setDialogOpen(false)} /></div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

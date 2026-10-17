@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <!-- Left Design: 3 Stacked Hologram Circles -->
+    <RelativeLayout
+        android:id="@+id/widget_circles_container"
+        android:layout_width="28dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="10dp">
+
+        <!-- Hologram Circle 3 (Bottom - Lowest Opacity) -->
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/circle_hologram"
+            android:contentDescription="Hologram Ring 3" />
+
+        <!-- Hologram Circle 2 (Middle - Mid Opacity) -->
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/circle_mid"
+            android:contentDescription="Hologram Ring 2" />
+
+        <!-- Hologram Circle 1 (Top - Solid Bright Green) -->
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/circle_solid"
+            android:contentDescription="Hologram Ring 1" />
+
+    </RelativeLayout>
+
+    <!-- Center Content: Smart Auto Meal Tag & Quick Add Trigger -->
+    <LinearLayout
+        android:id="@+id/widget_quick_add_action"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/widget_meal_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="[ LUNCH // AUTO ]"
+            android:textColor="#00FF66"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/widget_quick_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="monospace"
+            android:text="+ TAP TO QUICK LOG"
+            android:textColor="#008837"
+            android:textSize="9sp" />
+
+    </LinearLayout>
+
+    <!-- Right Action: Small Button to Open Entire App -->
+    <TextView
+        android:id="@+id/widget_open_app_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/widget_btn_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="monospace"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp"
+        android:text="APP &gt;&gt;"
+        android:textColor="#00FF66"
+        android:textSize="9sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
