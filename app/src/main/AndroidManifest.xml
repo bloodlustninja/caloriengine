@@ -33,6 +33,7 @@
             android:theme="@style/Theme.Caloriengine.TranslucentDialog"
             android:windowSoftInputMode="stateVisible|adjustResize" />
 
+        <!-- 2x1 Quick Add Widget -->
         <receiver
             android:name=".widget.QuickAddWidgetProvider"
             android:exported="true"
@@ -43,6 +44,19 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_quick_add_info" />
+        </receiver>
+
+        <!-- 2x2 Metabolic HUD Widget -->
+        <receiver
+            android:name=".widget.MetabolicHudWidgetProvider"
+            android:exported="true"
+            android:label="Metabolic HUD Matrix Widget (2x2)">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_metabolic_hud_info" />
         </receiver>
 
     </application>

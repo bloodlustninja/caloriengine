@@ -24,35 +24,33 @@
             --power-led: #00ff66;
         }
 
-        /* Reference Image Match: Translucent Pink Game Boy Shell & Cobalt Blue Circuit Board Theme */
         body.theme-purple {
             --bg: #111827;
-            --primary: #f472b6;          /* Vibrant Hot Pink */
-            --primary-dim: #93c5fd;      /* Pastel Sky Blue Accent */
-            --accent: #ec4899;           /* D-Pad Hot Pink */
+            --primary: #f472b6;
+            --primary-dim: #93c5fd;
+            --accent: #ec4899;
             --alert: #f43f5e;
             --warning: #fbbf24;
             --border: rgba(244, 211, 238, 0.5);
-            --border-bright: #f4d3ee;    /* Pastel Pink Bezel Rim */
+            --border-bright: #f4d3ee;
             --glow: rgba(236, 72, 153, 0.4);
             --glow-strong: rgba(244, 114, 182, 0.7);
-            --panel-bg: rgba(30, 58, 138, 0.88); /* Cobalt Blue Circuit Board Screen Container */
+            --panel-bg: rgba(30, 58, 138, 0.88);
             --power-led: #ec4899;
         }
 
-        /* 80s Beige Macintosh Platinum / Atari ST Theme */
         body.theme-beige {
-            --bg: #B5B0A7; /* Muted Desktop Gray */
-            --primary: #1A1A1A; /* Charcoal Ink */
+            --bg: #B5B0A7;
+            --primary: #1A1A1A;
             --primary-dim: #555555;
-            --accent: #0044AA; /* Macintosh System Blue */
-            --alert: #FF8C00; /* CRT Amber */
-            --warning: #00A36C; /* Atari Emerald Green */
+            --accent: #0044AA;
+            --alert: #FF8C00;
+            --warning: #00A36C;
             --border: #1A1A1A;
             --border-bright: #0044AA;
             --glow: rgba(0, 68, 170, 0.25);
             --glow-strong: rgba(0, 163, 108, 0.5);
-            --panel-bg: #E2DDD5; /* Platinum Cream */
+            --panel-bg: #E2DDD5;
             --power-led: #00A36C;
         }
 
@@ -72,12 +70,11 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* Translucent Pink Shell & Cobalt Blue PCB Layer for Reference Theme */
         body.theme-purple::after {
             content: "";
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #1e3a8a; /* Deep Cobalt Blue Circuit Board */
+            background-color: #1e3a8a;
             background-image:
                 radial-gradient(circle at 50% 20%, rgba(244, 211, 238, 0.5) 0%, rgba(232, 184, 222, 0.35) 100%),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
@@ -89,7 +86,6 @@
             pointer-events: none;
         }
 
-        /* Scanline & Liquid Caustic Overlay */
         body::before {
             content: " ";
             display: block;
@@ -104,14 +100,13 @@
 
         .app-container {
             padding: 0.8rem;
-            padding-top: 38px; /* Safe space for Android Status Bar */
+            padding-top: 38px;
             padding-bottom: 95px;
             max-width: 600px;
             box-sizing: border-box;
             margin: 0 auto;
         }
 
-        /* Top HUD Header */
         .top-hud {
             display: flex;
             justify-content: space-between;
@@ -159,10 +154,9 @@
             transition: all 0.3s ease;
         }
 
-        /* Reference Image Styling Customizations */
         body.theme-purple .cyber-panel {
-            background: rgba(30, 58, 138, 0.88); /* Deep Cobalt Blue Container from Image */
-            border: 3px solid #f4d3ee;             /* Smooth Pastel Pink Bezel Frame */
+            background: rgba(30, 58, 138, 0.88);
+            border: 3px solid #f4d3ee;
             clip-path: none;
             border-radius: 12px;
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.35), 0 0 15px rgba(244, 211, 238, 0.4);
@@ -170,8 +164,8 @@
         }
 
         body.theme-purple .panel-header {
-            background: #f4d3ee;                   /* Pastel Pink Bezel Header Bar */
-            color: #1e3a8a;                        /* Deep Cobalt Blue Text */
+            background: #f4d3ee;
+            color: #1e3a8a;
             padding: 8px 12px;
             margin: -1.2rem -1.2rem 1rem -1.2rem;
             border-bottom: 2px solid #ec4899;
@@ -180,7 +174,6 @@
             text-shadow: none;
         }
 
-        /* Hot Pink 3D Tactile Buttons (#EC4899) from Reference Image */
         body.theme-purple .terminal-button {
             background: linear-gradient(180deg, #f472b6 0%, #ec4899 100%);
             color: #ffffff;
@@ -189,12 +182,6 @@
             border-radius: 8px;
             font-weight: bold;
             text-shadow: 0 1px 2px rgba(0,0,0,0.4);
-        }
-
-        body.theme-purple .terminal-button:hover, body.theme-purple .terminal-button:active {
-            background: #db2777;
-            color: #ffffff;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         body.theme-purple .input-group, body.theme-purple .quote-box, body.theme-purple .split-chip {
@@ -218,7 +205,6 @@
             text-shadow: 0 0 8px rgba(244, 114, 182, 0.6);
         }
 
-        /* 80s Beige Specific Bevel Panel Customizations */
         body.theme-beige .cyber-panel {
             background: #E2DDD5;
             border: 2px solid #1A1A1A;
@@ -246,12 +232,6 @@
             border: 2px solid #1A1A1A;
             box-shadow: inset 1px 1px 0px #FFFFFF, inset -1px -1px 0px #7A756E, 2px 2px 0px 0px #1A1A1A;
             font-weight: bold;
-        }
-
-        body.theme-beige .terminal-button:hover, body.theme-beige .terminal-button:active {
-            background: #00A36C;
-            color: #FFFFFF;
-            box-shadow: inset -1px -1px 0px #FFFFFF, inset 1px 1px 0px #1A1A1A;
         }
 
         body.theme-beige .input-group, body.theme-beige .quote-box, body.theme-beige .split-chip {
@@ -393,7 +373,6 @@
             clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
         }
 
-        /* Macro Spectrum Telemetry */
         .macro-telemetry {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -441,7 +420,6 @@
         .progress-label { display: flex; justify-content: space-between; font-size: 0.65rem; margin-bottom: 6px; }
         .led-bar { display: flex; gap: 3px; height: 12px; }
 
-        /* LED Meter Blocks - Bright Green / Cyan Active Fill */
         .led-block {
             flex: 1;
             background: rgba(0, 0, 0, 0.5);
@@ -531,7 +509,6 @@
         .pulse-glow { animation: pulse 2s infinite; }
         @keyframes pulse { 0% { box-shadow: 0 0 5px var(--glow); opacity: 0.8; } 50% { box-shadow: 0 0 18px var(--glow-strong); opacity: 1; } 100% { box-shadow: 0 0 5px var(--glow); opacity: 0.8; } }
 
-        /* Bonfire & Protocol Hero Styling */
         .bonfire-container {
             width: 100%;
             height: 160px;
@@ -575,7 +552,6 @@
             box-shadow: 0 0 12px var(--glow-strong);
         }
 
-        /* 7-Day Split Strip */
         .split-strip {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -613,6 +589,9 @@
             font-size: 0.48rem;
             color: var(--primary-dim);
             margin-top: 2px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .split-chip.today .tag-lbl {
@@ -631,14 +610,6 @@
             backdrop-filter: blur(14px);
             z-index: 50;
             box-shadow: 0 -5px 20px rgba(0,0,0,0.8);
-        }
-
-        .privacy-badge {
-            font-size: 0.48rem;
-            color: var(--primary-dim);
-            position: absolute;
-            top: 3px; right: 12px;
-            letter-spacing: 0.5px;
         }
 
         .terminal-overlay {
@@ -688,7 +659,6 @@
             align-items: center;
         }
 
-        /* Small Theme Trigger on Bottom Left of Activity Page */
         .activity-theme-trigger {
             font-size: 0.62rem;
             color: var(--primary);
@@ -820,129 +790,315 @@
             ]
         };
 
+        // Calibrated 100g Base Profiles & Single Serving Piece Weights
         const FOOD_DB = {
-            // Maharashtrian Specialties
-            'MISAL PAV': { kcal: 450, std: 1, unit: 'PC' },
-            'MISAL': { kcal: 350, std: 150, unit: 'G' },
-            'KANDA POHA': { kcal: 200, std: 150, unit: 'G' },
-            'POHA': { kcal: 180, std: 150, unit: 'G' },
-            'POHE': { kcal: 180, std: 150, unit: 'G' },
-            'BATATA VADA': { kcal: 180, std: 1, unit: 'PC' },
-            'VADA PAV': { kcal: 300, std: 1, unit: 'PC' },
-            'VADAPAV': { kcal: 300, std: 1, unit: 'PC' },
-            'PAV BHAJI': { kcal: 400, std: 1, unit: 'PC' },
-            'PAVBHAJI': { kcal: 400, std: 1, unit: 'PC' },
-            'PAV': { kcal: 80, std: 1, unit: 'PC' },
-            'SABUDANA KHICHDI': { kcal: 320, std: 150, unit: 'G' },
-            'SABUDANA VADA': { kcal: 220, std: 1, unit: 'PC' },
-            'THALIPEETH': { kcal: 220, std: 1, unit: 'PC' },
-            'PURAN POLI': { kcal: 300, std: 1, unit: 'PC' },
-            'PURANPOLI': { kcal: 300, std: 1, unit: 'PC' },
-            'PITHLA BHAKRI': { kcal: 350, std: 1, unit: 'PC' },
-            'PITHLA': { kcal: 160, std: 150, unit: 'G' },
-            'PITLA': { kcal: 160, std: 150, unit: 'G' },
-            'BHAKRI': { kcal: 150, std: 1, unit: 'PC' },
-            'JOWAR BHAKRI': { kcal: 150, std: 1, unit: 'PC' },
-            'BAJRA BHAKRI': { kcal: 160, std: 1, unit: 'PC' },
-            'SOLKADI': { kcal: 70, std: 150, unit: 'ML' },
-            'SOL KADI': { kcal: 70, std: 150, unit: 'ML' },
-            'UKADICHE MODAK': { kcal: 180, std: 1, unit: 'PC' },
-            'MODAK': { kcal: 180, std: 1, unit: 'PC' },
-            'KOTHAMBIR VADI': { kcal: 180, std: 1, unit: 'PC' },
-            'ALU VADI': { kcal: 160, std: 1, unit: 'PC' },
-            'USAL': { kcal: 180, std: 150, unit: 'G' },
-            'MATKI USAL': { kcal: 180, std: 150, unit: 'G' },
-            'VARAN BHAT': { kcal: 280, std: 1, unit: 'PC' },
-            'BHARLI VANGI': { kcal: 180, std: 150, unit: 'G' },
-            'KANDA BHAJI': { kcal: 250, std: 100, unit: 'G' },
-            'BHAJIYA': { kcal: 250, std: 100, unit: 'G' },
-            'PAKODA': { kcal: 250, std: 100, unit: 'G' },
-            'TAAK': { kcal: 40, std: 200, unit: 'ML' },
-            'BUTTERMILK': { kcal: 40, std: 200, unit: 'ML' },
-            'SHRIKHAND': { kcal: 280, std: 100, unit: 'G' },
-            'BASUNDI': { kcal: 260, std: 150, unit: 'ML' },
-            'ZHUNKA': { kcal: 160, std: 150, unit: 'G' },
-            'JUNKA': { kcal: 160, std: 150, unit: 'G' },
-            'KOMBDI VADE': { kcal: 450, std: 1, unit: 'PC' },
-            'TAMBDA RASA': { kcal: 120, std: 150, unit: 'ML' },
-            'PANDHRA RASA': { kcal: 160, std: 150, unit: 'ML' },
-            'SURMAI FRY': { kcal: 250, std: 1, unit: 'PC' },
-            'POMFRET FRY': { kcal: 240, std: 1, unit: 'PC' },
+            'MILKY BAR': { kcal: 490, p: 9.0, c: 61.0, f: 24.0, std: 100, unit: 'G', pieceGrams: 20 },
+            'MILKYBAR': { kcal: 490, p: 9.0, c: 61.0, f: 24.0, std: 100, unit: 'G', pieceGrams: 20 },
+            'KIT KAT': { kcal: 520, p: 7.0, c: 67.5, f: 26.0, std: 100, unit: 'G', pieceGrams: 20 },
+            'KITKAT': { kcal: 520, p: 7.0, c: 67.5, f: 26.0, std: 100, unit: 'G', pieceGrams: 20 },
+            'SNICKERS': { kcal: 488, p: 9.5, c: 61.0, f: 24.0, std: 100, unit: 'G', pieceGrams: 44 },
+            'DAIRY MILK': { kcal: 530, p: 8.0, c: 58.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 24 },
+            '5 STAR': { kcal: 470, p: 4.5, c: 70.0, f: 19.0, std: 100, unit: 'G', pieceGrams: 25 },
+            'PERK': { kcal: 490, p: 5.5, c: 68.0, f: 22.0, std: 100, unit: 'G', pieceGrams: 14 },
+            'MUNCH': { kcal: 480, p: 6.5, c: 65.0, f: 21.0, std: 100, unit: 'G', pieceGrams: 18 },
+            'REESES PEANUT BUTTER CUP': { kcal: 525, p: 11.2, c: 60.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 40 },
+            'REESES': { kcal: 525, p: 11.2, c: 60.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 40 },
+            'PEANUT BUTTER CUP': { kcal: 525, p: 11.2, c: 60.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 40 },
+            'CHOCOLATE': { kcal: 520, p: 8.0, c: 60.0, f: 28.0, std: 100, unit: 'G', pieceGrams: 25 },
 
-            // North & South Indian Staples
-            'CHICKEN FRIED RICE': { kcal: 163, std: 250, unit: 'G' },
-            'CHICKEN RICE': { kcal: 140, std: 250, unit: 'G' },
-            'CHICKEN CURRY': { kcal: 180, std: 150, unit: 'G' },
-            'CHICKEN BREAST': { kcal: 165, std: 100, unit: 'G' },
-            'CHICKEN': { kcal: 239, std: 100, unit: 'G' },
-            'PANEER BUTTER MASALA': { kcal: 320, std: 150, unit: 'G' },
-            'SHAHI PANEER': { kcal: 300, std: 150, unit: 'G' },
-            'PANEER TIKKA': { kcal: 250, std: 150, unit: 'G' },
-            'PANEER': { kcal: 265, std: 100, unit: 'G' },
-            'ALOO PARATHA': { kcal: 250, std: 1, unit: 'PC' },
-            'PARATHA': { kcal: 180, std: 1, unit: 'PC' },
-            'SABZI': { kcal: 120, std: 150, unit: 'G' },
-            'ALOO GOBI': { kcal: 110, std: 150, unit: 'G' },
-            'MIX VEG': { kcal: 100, std: 150, unit: 'G' },
-            'BHINDI': { kcal: 90, std: 150, unit: 'G' },
-            'DAL TADKA': { kcal: 110, std: 150, unit: 'G' },
-            'DAL MAKHANI': { kcal: 150, std: 150, unit: 'G' },
-            'DAL': { kcal: 105, std: 150, unit: 'G' },
-            'RAJMA': { kcal: 180, std: 150, unit: 'G' },
-            'CHOLE': { kcal: 180, std: 150, unit: 'G' },
-            'CHOLE BHATURE': { kcal: 550, std: 1, unit: 'PC' },
-            'SAMOSA': { kcal: 250, std: 1, unit: 'PC' },
-            'KACHORI': { kcal: 280, std: 1, unit: 'PC' },
-            'ROTI': { kcal: 80, std: 1, unit: 'PC' },
-            'CHAPATI': { kcal: 75, std: 1, unit: 'PC' },
-            'PHULKA': { kcal: 60, std: 1, unit: 'PC' },
-            'NAAN': { kcal: 260, std: 1, unit: 'PC' },
-            'BUTTER NAAN': { kcal: 310, std: 1, unit: 'PC' },
-            'CHICKEN BIRYANI': { kcal: 220, std: 100, unit: 'G' },
-            'VEG BIRYANI': { kcal: 180, std: 100, unit: 'G' },
-            'BIRYANI': { kcal: 200, std: 100, unit: 'G' },
-            'EGG CURRY': { kcal: 210, std: 1, unit: 'PC' },
-            'EGG BHURJI': { kcal: 220, std: 1, unit: 'PC' },
-            'OMELETTE': { kcal: 180, std: 1, unit: 'PC' },
-            'EGG': { kcal: 78, std: 1, unit: 'PC' },
-            'IDLI': { kcal: 60, std: 1, unit: 'PC' },
-            'DOSA': { kcal: 120, std: 1, unit: 'PC' },
-            'MASALA DOSA': { kcal: 350, std: 1, unit: 'PC' },
-            'MEDU VADA': { kcal: 180, std: 1, unit: 'PC' },
-            'UTTAPAM': { kcal: 220, std: 1, unit: 'PC' },
-            'UPMA': { kcal: 200, std: 150, unit: 'G' },
-            'HALWA': { kcal: 300, std: 100, unit: 'G' },
-            'GAJAR HALWA': { kcal: 280, std: 100, unit: 'G' },
-            'GULAB JAMUN': { kcal: 150, std: 1, unit: 'PC' },
-            'JALEBI': { kcal: 150, std: 1, unit: 'PC' },
-            'MAGGI': { kcal: 300, std: 1, unit: 'PC' },
-            'COFFEE': { kcal: 50, std: 150, unit: 'ML' },
-            'TEA': { kcal: 40, std: 150, unit: 'ML' },
-            'CHAI': { kcal: 45, std: 150, unit: 'ML' },
-            'LASSI': { kcal: 180, std: 200, unit: 'ML' },
-            'CURD': { kcal: 60, std: 100, unit: 'G' },
-            'DAHI': { kcal: 60, std: 100, unit: 'G' },
-            'BEER': { kcal: 43, std: 355, unit: 'ML' },
-            'WHISKEY': { kcal: 250, std: 30, unit: 'ML' },
-            'VODKA': { kcal: 231, std: 30, unit: 'ML' },
-            'RUM': { kcal: 231, std: 30, unit: 'ML' },
-            'WINE': { kcal: 83, std: 150, unit: 'ML' },
-            'GIN': { kcal: 263, std: 30, unit: 'ML' },
-            'COCKTAIL': { kcal: 200, std: 200, unit: 'ML' },
-            'ALCOHOL': { kcal: 70, std: 30, unit: 'ML' },
-            'RICE': { kcal: 130, std: 150, unit: 'G' },
-            'OATS': { kcal: 389, std: 50, unit: 'G' },
-            'BANANA': { kcal: 89, std: 1, unit: 'PC' },
-            'APPLE': { kcal: 52, std: 1, unit: 'PC' },
-            'MANGO': { kcal: 100, std: 1, unit: 'PC' },
-            'MILK': { kcal: 42, std: 200, unit: 'ML' },
-            'BREAD': { kcal: 70, std: 1, unit: 'SLICE' },
-            'WHEY': { kcal: 120, std: 30, unit: 'G' },
-            'PEANUT BUTTER': { kcal: 90, std: 15, unit: 'G' },
-            'FISH': { kcal: 206, std: 100, unit: 'G' },
-            'BEEF': { kcal: 250, std: 100, unit: 'G' },
-            'BURGER': { kcal: 295, std: 1, unit: 'PC' },
-            'PIZZA': { kcal: 266, std: 1, unit: 'SLICE' }
+            'PROTEIN OATS': { kcal: 440, p: 44.0, c: 52.0, f: 7.0, std: 100, unit: 'G', pieceGrams: 50 },
+            'HIGH PROTEIN OATS': { kcal: 440, p: 44.0, c: 52.0, f: 7.0, std: 100, unit: 'G', pieceGrams: 50 },
+            'OATS': { kcal: 380, p: 17.0, c: 66.0, f: 7.0, std: 100, unit: 'G', pieceGrams: 50 },
+            'OATMEAL': { kcal: 380, p: 17.0, c: 66.0, f: 7.0, std: 100, unit: 'G', pieceGrams: 50 },
+            'MUESLI': { kcal: 420, p: 14.0, c: 72.0, f: 8.0, std: 100, unit: 'G', pieceGrams: 50 },
+            'PROTEIN SHAKE': { kcal: 180, p: 30.0, c: 6.0, f: 3.0, std: 1, unit: 'PC', pieceGrams: 1 },
+            'WHEY PROTEIN': { kcal: 400, p: 80.0, c: 6.5, f: 5.0, std: 100, unit: 'G', pieceGrams: 30 },
+            'WHEY': { kcal: 400, p: 80.0, c: 6.5, f: 5.0, std: 100, unit: 'G', pieceGrams: 30 },
+            'ISOLATE': { kcal: 383, p: 90.0, c: 3.0, f: 1.5, std: 100, unit: 'G', pieceGrams: 30 },
+            'PROTEIN BAR': { kcal: 366, p: 33.3, c: 36.6, f: 10.0, std: 100, unit: 'G', pieceGrams: 60 },
+            'CHICKEN BREAST': { kcal: 165, p: 31.0, c: 0.0, f: 3.6, std: 100, unit: 'G', pieceGrams: 150 },
+            'CHICKEN TIKKA': { kcal: 146, p: 18.6, c: 2.6, f: 6.6, std: 100, unit: 'G', pieceGrams: 150 },
+            'SOYA CHUNKS': { kcal: 345, p: 52.0, c: 33.0, f: 0.5, std: 100, unit: 'G', pieceGrams: 50 },
+            'EGG WHITES': { kcal: 52, p: 11.0, c: 0.7, f: 0.2, std: 100, unit: 'G', pieceGrams: 33 },
+            'EGG': { kcal: 155, p: 12.6, c: 1.1, f: 10.6, std: 100, unit: 'G', pieceGrams: 50 },
+            'ANDA': { kcal: 155, p: 12.6, c: 1.1, f: 10.6, std: 100, unit: 'G', pieceGrams: 50 },
+
+            'CHICKEN ROLL': { kcal: 233, p: 16.0, c: 25.3, f: 8.0, std: 100, unit: 'G', pieceGrams: 150 },
+            'PANEER ROLL': { kcal: 226, p: 10.0, c: 26.6, f: 9.3, std: 100, unit: 'G', pieceGrams: 150 },
+            'EGG ROLL': { kcal: 215, p: 10.7, c: 24.6, f: 8.4, std: 100, unit: 'G', pieceGrams: 130 },
+            'FRANKIE': { kcal: 220, p: 12.0, c: 25.0, f: 7.5, std: 100, unit: 'G', pieceGrams: 140 },
+            'ROLL': { kcal: 220, p: 12.0, c: 25.0, f: 7.5, std: 100, unit: 'G', pieceGrams: 140 },
+            'WRAP': { kcal: 220, p: 12.0, c: 25.0, f: 7.5, std: 100, unit: 'G', pieceGrams: 140 },
+
+            'STEAM MOMOS': { kcal: 175, p: 6.0, c: 32.5, f: 2.5, std: 100, unit: 'G', pieceGrams: 20 },
+            'MOMOS': { kcal: 175, p: 6.0, c: 32.5, f: 2.5, std: 100, unit: 'G', pieceGrams: 20 },
+
+            'ROTI': { kcal: 265, p: 9.3, c: 50.0, f: 2.6, std: 100, unit: 'G', pieceGrams: 30 },
+            'CHAPATI': { kcal: 265, p: 9.3, c: 50.0, f: 2.6, std: 100, unit: 'G', pieceGrams: 30 },
+            'RICE': { kcal: 130, p: 2.7, c: 28.0, f: 0.4, std: 100, unit: 'G', pieceGrams: 150 },
+            'PANEER': { kcal: 265, p: 18.0, c: 3.0, f: 20.0, std: 100, unit: 'G', pieceGrams: 100 },
+            'MILK': { kcal: 60, p: 3.25, c: 5.0, f: 3.0, std: 100, unit: 'ML', pieceGrams: 200 },
+
+            // PUNE & MAHARASHTRIAN REGIONAL EATERIES & CULINARY SPECIALTIES
+            'CAMP BURGER': { kcal: 235, p: 15.0, c: 17.2, f: 11.8, std: 100, unit: 'G', pieceGrams: 320 },
+            'PUNE CAMP BURGER': { kcal: 235, p: 15.0, c: 17.2, f: 11.8, std: 100, unit: 'G', pieceGrams: 320 },
+            'KING BURGER': { kcal: 235, p: 15.0, c: 17.2, f: 11.8, std: 100, unit: 'G', pieceGrams: 320 },
+            'SHREWSBURY BISCUITS': { kcal: 540, p: 5.5, c: 62.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 25 },
+            'KAYANI SHREWSBURY': { kcal: 540, p: 5.5, c: 62.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 25 },
+            'MAWA CAKE': { kcal: 410, p: 7.0, c: 53.0, f: 19.0, std: 100, unit: 'G', pieceGrams: 60 },
+            'KAYANI MAWA CAKE': { kcal: 410, p: 7.0, c: 53.0, f: 19.0, std: 100, unit: 'G', pieceGrams: 60 },
+            'GOODLUCK KEEMA PAV': { kcal: 210, p: 14.5, c: 12.0, f: 12.0, std: 100, unit: 'G', pieceGrams: 250 },
+            'KEEMA PAV': { kcal: 210, p: 14.5, c: 12.0, f: 12.0, std: 100, unit: 'G', pieceGrams: 250 },
+            'BUN MASKA': { kcal: 345, p: 6.5, c: 44.0, f: 16.5, std: 100, unit: 'G', pieceGrams: 110 },
+            'GOODLUCK BUN MASKA': { kcal: 345, p: 6.5, c: 44.0, f: 16.5, std: 100, unit: 'G', pieceGrams: 110 },
+            'GOODLUCK CHEESE OMELETTE': { kcal: 228, p: 13.8, c: 2.2, f: 18.4, std: 100, unit: 'G', pieceGrams: 160 },
+            'MARZORIN CHICKEN SANDWICH': { kcal: 225, p: 13.2, c: 22.8, f: 8.9, std: 100, unit: 'G', pieceGrams: 140 },
+            'MARZORIN CHEESE MACARONI': { kcal: 186, p: 6.5, c: 21.8, f: 8.2, std: 100, unit: 'G', pieceGrams: 220 },
+            'IMPERIAL CREAM ROLL': { kcal: 440, p: 5.0, c: 56.0, f: 22.0, std: 100, unit: 'G', pieceGrams: 50 },
+            'CREAM ROLL': { kcal: 440, p: 5.0, c: 56.0, f: 22.0, std: 100, unit: 'G', pieceGrams: 50 },
+            'MUTTON PUFF': { kcal: 309, p: 12.7, c: 25.4, f: 17.7, std: 100, unit: 'G', pieceGrams: 110 },
+            'VEG PUFF': { kcal: 280, p: 5.5, c: 32.0, f: 15.0, std: 100, unit: 'G', pieceGrams: 100 },
+            'CHICKEN PATTIES': { kcal: 316, p: 12.4, c: 26.6, f: 18.3, std: 100, unit: 'G', pieceGrams: 90 },
+            'SALLI BOTI': { kcal: 193, p: 11.3, c: 14.0, f: 10.0, std: 100, unit: 'G', pieceGrams: 300 },
+            'DORABJEE SALLI BOTI': { kcal: 193, p: 11.3, c: 14.0, f: 10.0, std: 100, unit: 'G', pieceGrams: 300 },
+            'MISAL PAV': { kcal: 175, p: 6.2, c: 19.5, f: 8.2, std: 100, unit: 'G', pieceGrams: 300 },
+            'KATAKIRR MISAL': { kcal: 175, p: 6.2, c: 19.5, f: 8.2, std: 100, unit: 'G', pieceGrams: 300 },
+            'BEDEKAR MISAL': { kcal: 171, p: 5.0, c: 22.1, f: 7.1, std: 100, unit: 'G', pieceGrams: 280 },
+            'BARBEQUE MISAL': { kcal: 175, p: 6.2, c: 18.1, f: 8.7, std: 100, unit: 'G', pieceGrams: 320 },
+            'THORATS MISAL': { kcal: 175, p: 6.2, c: 18.1, f: 8.7, std: 100, unit: 'G', pieceGrams: 320 },
+            'VADA PAV': { kcal: 223, p: 4.5, c: 32.3, f: 8.6, std: 100, unit: 'G', pieceGrams: 130 },
+            'GARDEN VADA PAV': { kcal: 223, p: 4.5, c: 32.3, f: 8.6, std: 100, unit: 'G', pieceGrams: 130 },
+            'JOSHI VADA PAV': { kcal: 223, p: 4.5, c: 32.3, f: 8.6, std: 100, unit: 'G', pieceGrams: 130 },
+            'GAJANAN VADA PAV': { kcal: 218, p: 4.4, c: 31.1, f: 8.5, std: 100, unit: 'G', pieceGrams: 135 },
+            'POHE': { kcal: 165, p: 3.2, c: 28.0, f: 4.5, std: 100, unit: 'G', pieceGrams: 180 },
+            'PUNERI POHE': { kcal: 165, p: 3.2, c: 28.0, f: 4.5, std: 100, unit: 'G', pieceGrams: 180 },
+            'JOSHI ANWADEY POHE': { kcal: 165, p: 3.2, c: 28.0, f: 4.5, std: 100, unit: 'G', pieceGrams: 180 },
+            'DADPE POHE': { kcal: 146, p: 3.0, c: 25.3, f: 4.0, std: 100, unit: 'G', pieceGrams: 150 },
+            'MATKI BHEL': { kcal: 186, p: 5.6, c: 29.3, f: 5.0, std: 100, unit: 'G', pieceGrams: 150 },
+            'KALYAN BHEL': { kcal: 285, p: 6.0, c: 48.0, f: 8.0, std: 100, unit: 'G', pieceGrams: 120 },
+            'SABUDANA VADA': { kcal: 310, p: 3.5, c: 44.0, f: 13.5, std: 100, unit: 'G', pieceGrams: 60 },
+            'SABUDANA KHICHDI': { kcal: 205, p: 3.1, c: 32.0, f: 7.5, std: 100, unit: 'G', pieceGrams: 200 },
+            'KOTHIMBIR VADI': { kcal: 240, p: 8.2, c: 28.0, f: 10.5, std: 100, unit: 'G', pieceGrams: 35 },
+            'THALIPEETH': { kcal: 257, p: 6.8, c: 32.8, f: 11.4, std: 100, unit: 'G', pieceGrams: 140 },
+            'PITHLA BHAKRI': { kcal: 170, p: 6.8, c: 24.0, f: 5.2, std: 100, unit: 'G', pieceGrams: 250 },
+            'ZUNKA BHAKRI': { kcal: 170, p: 6.8, c: 24.0, f: 5.2, std: 100, unit: 'G', pieceGrams: 250 },
+            'VAISHALI DOSA': { kcal: 215, p: 4.8, c: 29.0, f: 9.0, std: 100, unit: 'G', pieceGrams: 180 },
+            'MYSORE DOSA': { kcal: 215, p: 4.8, c: 29.0, f: 9.0, std: 100, unit: 'G', pieceGrams: 180 },
+            'CHEESE MYSORE DOSA': { kcal: 219, p: 5.9, c: 25.7, f: 10.4, std: 100, unit: 'G', pieceGrams: 210 },
+            'VAISHALI CUTLET': { kcal: 193, p: 4.0, c: 26.2, f: 8.1, std: 100, unit: 'G', pieceGrams: 160 },
+            'SPONGE DOSA': { kcal: 188, p: 4.1, c: 28.8, f: 6.1, std: 100, unit: 'G', pieceGrams: 180 },
+            'MEDU VADA': { kcal: 266, p: 6.6, c: 30.0, f: 13.3, std: 100, unit: 'G', pieceGrams: 120 },
+            'COLD COFFEE': { kcal: 110, p: 2.4, c: 16.5, f: 4.0, std: 100, unit: 'ML', pieceGrams: 250 },
+            'DURGA COLD COFFEE': { kcal: 128, p: 2.6, c: 19.2, f: 4.8, std: 100, unit: 'ML', pieceGrams: 250 },
+            'CHOCOLATE COLD COFFEE': { kcal: 140, p: 2.4, c: 21.6, f: 5.0, std: 100, unit: 'ML', pieceGrams: 250 },
+            'PAV BHAJI': { kcal: 172, p: 4.2, c: 20.5, f: 8.2, std: 100, unit: 'G', pieceGrams: 300 },
+            'CHEESE PAV BHAJI': { kcal: 194, p: 4.5, c: 21.2, f: 10.0, std: 100, unit: 'G', pieceGrams: 320 },
+            'SUPREME PAV BHAJI': { kcal: 194, p: 4.5, c: 21.2, f: 10.0, std: 100, unit: 'G', pieceGrams: 320 },
+            'CHOCOLATE CHEESE TOAST': { kcal: 281, p: 6.2, c: 36.2, f: 12.5, std: 100, unit: 'G', pieceGrams: 160 },
+            'CHEESE CHILLI TOAST': { kcal: 257, p: 8.5, c: 27.1, f: 12.8, std: 100, unit: 'G', pieceGrams: 140 },
+            'CHICKEN THALI': { kcal: 160, p: 10.5, c: 15.0, f: 6.2, std: 100, unit: 'G', pieceGrams: 550 },
+            'MUTTON THALI': { kcal: 180, p: 11.5, c: 12.0, f: 9.5, std: 100, unit: 'G', pieceGrams: 550 },
+            'MARATHA KHANAVAL THALI': { kcal: 160, p: 10.5, c: 15.0, f: 6.2, std: 100, unit: 'G', pieceGrams: 550 },
+            'JAGDAMBA MUTTON THALI': { kcal: 161, p: 10.5, c: 14.2, f: 7.1, std: 100, unit: 'G', pieceGrams: 650 },
+            'PUNERI BIRYANI': { kcal: 168, p: 9.2, c: 21.0, f: 5.2, std: 100, unit: 'G', pieceGrams: 350 },
+            'SP BIRYANI': { kcal: 168, p: 9.2, c: 21.0, f: 5.2, std: 100, unit: 'G', pieceGrams: 350 },
+            'BLUE NILE BIRYANI': { kcal: 172, p: 9.5, c: 19.0, f: 6.5, std: 100, unit: 'G', pieceGrams: 400 },
+            'CHICKEN SUKKA': { kcal: 190, p: 17.2, c: 4.0, f: 12.0, std: 100, unit: 'G', pieceGrams: 200 },
+            'KALA RASSA MUTTON': { kcal: 190, p: 17.2, c: 2.7, f: 12.7, std: 100, unit: 'G', pieceGrams: 220 },
+            'TAMBDA RASSA': { kcal: 73, p: 2.3, c: 2.6, f: 6.0, std: 100, unit: 'ML', pieceGrams: 150 },
+            'PANDHRA RASSA': { kcal: 85, p: 2.5, c: 2.8, f: 7.2, std: 100, unit: 'ML', pieceGrams: 150 },
+            'SOLKADI': { kcal: 45, p: 0.8, c: 4.2, f: 2.8, std: 100, unit: 'ML', pieceGrams: 200 },
+            'CHELO KABAB': { kcal: 189, p: 11.8, c: 16.3, f: 8.4, std: 100, unit: 'G', pieceGrams: 380 },
+            'SURMAI FRY': { kcal: 186, p: 21.3, c: 4.0, f: 9.3, std: 100, unit: 'G', pieceGrams: 150 },
+            'BOMBIL FRY': { kcal: 171, p: 15.7, c: 8.5, f: 8.5, std: 100, unit: 'G', pieceGrams: 140 },
+            'KOMBDI VADE': { kcal: 174, p: 10.2, c: 15.4, f: 8.0, std: 100, unit: 'G', pieceGrams: 350 },
+            'UNLIMITED VEG THALI': { kcal: 135, p: 3.7, c: 19.2, f: 4.8, std: 100, unit: 'G', pieceGrams: 700 },
+            'MASTANI': { kcal: 190, p: 3.8, c: 28.5, f: 6.8, std: 100, unit: 'G', pieceGrams: 280 },
+            'SUJATA MASTANI': { kcal: 190, p: 3.8, c: 28.5, f: 6.8, std: 100, unit: 'G', pieceGrams: 280 },
+            'MANGO MASTANI': { kcal: 190, p: 3.8, c: 28.5, f: 6.8, std: 100, unit: 'G', pieceGrams: 280 },
+            'BAKARWADI': { kcal: 520, p: 8.5, c: 54.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 15 },
+            'CHITALE BAKARWADI': { kcal: 520, p: 8.5, c: 54.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 15 },
+            'POONA CHIVDA': { kcal: 530, p: 9.0, c: 58.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 100 },
+            'LAXMI NARAYAN CHIVDA': { kcal: 530, p: 9.0, c: 58.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 100 },
+            'SHRIKHAND': { kcal: 280, p: 7.5, c: 42.0, f: 9.0, std: 100, unit: 'G', pieceGrams: 100 },
+            'BASUNDI': { kcal: 213, p: 5.5, c: 25.3, f: 10.0, std: 100, unit: 'ML', pieceGrams: 150 },
+            'AMBA BARFI': { kcal: 416, p: 7.3, c: 60.0, f: 16.6, std: 100, unit: 'G', pieceGrams: 30 },
+            'UKADICHE MODAK': { kcal: 275, p: 3.6, c: 43.3, f: 10.0, std: 100, unit: 'G', pieceGrams: 60 },
+            'MODAK': { kcal: 275, p: 3.6, c: 43.3, f: 10.0, std: 100, unit: 'G', pieceGrams: 60 },
+            'PURAN POLI': { kcal: 281, p: 6.2, c: 50.9, f: 6.5, std: 100, unit: 'G', pieceGrams: 110 },
+            'KAJU KATLI': { kcal: 475, p: 11.0, c: 57.5, f: 23.0, std: 100, unit: 'G', pieceGrams: 20 },
+            'GULAB JAMUN': { kcal: 350, p: 4.0, c: 56.0, f: 13.0, std: 100, unit: 'G', pieceGrams: 50 },
+            'JALEBI': { kcal: 380, p: 3.0, c: 72.0, f: 9.0, std: 100, unit: 'G', pieceGrams: 100 },
+            'CHIKKI': { kcal: 525, p: 15.5, c: 55.0, f: 28.7, std: 100, unit: 'G', pieceGrams: 40 },
+            'SHENGDANA CHIKKI': { kcal: 525, p: 15.5, c: 55.0, f: 28.7, std: 100, unit: 'G', pieceGrams: 40 },
+            'KHARVAS': { kcal: 175, p: 9.7, c: 17.5, f: 7.5, std: 100, unit: 'G', pieceGrams: 80 },
+            'PIYUSH': { kcal: 130, p: 3.0, c: 19.0, f: 4.75, std: 100, unit: 'ML', pieceGrams: 200 },
+
+            // ADDITIONAL 100+ PUNE, PCMC, WESTERN MAHARASHTRA & KONKAN SPECIALTIES
+            'ANAND VADA PAV': { kcal: 223, p: 4.5, c: 32.3, f: 8.6, std: 100, unit: 'G', pieceGrams: 130 },
+            'AHER VADA PAV': { kcal: 223, p: 4.5, c: 32.3, f: 8.6, std: 100, unit: 'G', pieceGrams: 130 },
+            'LITTLE ITALY PIZZA': { kcal: 240, p: 9.5, c: 28.0, f: 9.8, std: 100, unit: 'G', pieceGrams: 200 },
+            'AAGRI CHICKEN': { kcal: 180, p: 16.5, c: 3.5, f: 11.2, std: 100, unit: 'G', pieceGrams: 250 },
+            'AAGRI MUTTON': { kcal: 210, p: 17.0, c: 3.0, f: 14.5, std: 100, unit: 'G', pieceGrams: 250 },
+            'VARHADI CHICKEN': { kcal: 185, p: 16.8, c: 4.0, f: 11.5, std: 100, unit: 'G', pieceGrams: 250 },
+            'BHARLI VANGI': { kcal: 140, p: 3.2, c: 12.5, f: 9.0, std: 100, unit: 'G', pieceGrams: 180 },
+            'BAJRI BHAKRI': { kcal: 280, p: 8.5, c: 55.0, f: 3.2, std: 100, unit: 'G', pieceGrams: 50 },
+            'JOWAR BHAKRI': { kcal: 270, p: 8.2, c: 56.0, f: 2.1, std: 100, unit: 'G', pieceGrams: 50 },
+            'TANDLACI BHAKRI': { kcal: 260, p: 6.0, c: 57.0, f: 1.2, std: 100, unit: 'G', pieceGrams: 50 },
+            'RAGDA PATTIES': { kcal: 180, p: 5.2, c: 28.0, f: 5.5, std: 100, unit: 'G', pieceGrams: 200 },
+            'SEV PURI': { kcal: 220, p: 4.8, c: 32.0, f: 8.5, std: 100, unit: 'G', pieceGrams: 120 },
+            'DAHI PURI': { kcal: 190, p: 4.2, c: 27.0, f: 7.2, std: 100, unit: 'G', pieceGrams: 150 },
+            'PANI PURI': { kcal: 150, p: 3.0, c: 24.0, f: 4.8, std: 100, unit: 'G', pieceGrams: 120 },
+            'SPDP': { kcal: 210, p: 4.6, c: 29.0, f: 8.5, std: 100, unit: 'G', pieceGrams: 180 },
+            'SUKANTA SPDP': { kcal: 210, p: 4.6, c: 29.0, f: 8.5, std: 100, unit: 'G', pieceGrams: 180 },
+            'CHOLE BHATURE': { kcal: 240, p: 7.2, c: 32.0, f: 9.8, std: 100, unit: 'G', pieceGrams: 250 },
+            'CHICKEN SHAWARMA': { kcal: 220, p: 15.5, c: 18.2, f: 9.8, std: 100, unit: 'G', pieceGrams: 180 },
+            'MUTTON SHAWARMA': { kcal: 240, p: 16.2, c: 17.0, f: 12.2, std: 100, unit: 'G', pieceGrams: 180 },
+            'OPEN SHAWARMA': { kcal: 210, p: 18.0, c: 12.0, f: 10.2, std: 100, unit: 'G', pieceGrams: 220 },
+            'TERTIULIA PASTA': { kcal: 160, p: 6.2, c: 21.0, f: 6.0, std: 100, unit: 'G', pieceGrams: 300 },
+            'GERMAN BAKERY APPLE PIE': { kcal: 310, p: 3.2, c: 45.0, f: 13.5, std: 100, unit: 'G', pieceGrams: 120 },
+            'GERMAN BAKERY CHEESECAKE': { kcal: 340, p: 5.8, c: 32.0, f: 21.0, std: 100, unit: 'G', pieceGrams: 120 },
+            'PABLO CHEESECAKE': { kcal: 320, p: 5.5, c: 30.0, f: 20.0, std: 100, unit: 'G', pieceGrams: 100 },
+            'BAKESHOUSE CROISSANT': { kcal: 410, p: 8.2, c: 45.0, f: 22.0, std: 100, unit: 'G', pieceGrams: 70 },
+            'CAFE GOODLUCK TEA': { kcal: 65, p: 1.8, c: 9.2, f: 2.4, std: 100, unit: 'ML', pieceGrams: 150 },
+            'IRANI CHAI': { kcal: 65, p: 1.8, c: 9.2, f: 2.4, std: 100, unit: 'ML', pieceGrams: 150 },
+            'AMRUTTULYA CHAI': { kcal: 70, p: 1.9, c: 10.5, f: 2.3, std: 100, unit: 'ML', pieceGrams: 100 },
+            'PUNERI AMRUTTULYA': { kcal: 70, p: 1.9, c: 10.5, f: 2.3, std: 100, unit: 'ML', pieceGrams: 100 },
+            'YEVLE CHAI': { kcal: 70, p: 1.9, c: 10.5, f: 2.3, std: 100, unit: 'ML', pieceGrams: 100 },
+            'SAIBA CHICKEN THALI': { kcal: 165, p: 11.2, c: 14.5, f: 6.8, std: 100, unit: 'G', pieceGrams: 550 },
+            'MILKAT CHICKEN': { kcal: 190, p: 17.5, c: 4.2, f: 11.8, std: 100, unit: 'G', pieceGrams: 220 },
+            'SURMAI RAVA FRY': { kcal: 210, p: 20.5, c: 8.0, f: 11.0, std: 100, unit: 'G', pieceGrams: 150 },
+            'PRAWNS RAVAFRY': { kcal: 220, p: 18.0, c: 12.0, f: 11.5, std: 100, unit: 'G', pieceGrams: 150 },
+            'PRAWNS KOLIWADA': { kcal: 240, p: 19.5, c: 14.0, f: 12.2, std: 100, unit: 'G', pieceGrams: 150 },
+            'CRAB MASALA': { kcal: 140, p: 15.0, c: 5.2, f: 6.8, std: 100, unit: 'G', pieceGrams: 250 },
+            'CRAB SUKKA': { kcal: 160, p: 16.5, c: 4.8, f: 8.5, std: 100, unit: 'G', pieceGrams: 200 },
+            'KOLHAPURI MUTTON': { kcal: 210, p: 17.5, c: 3.5, f: 14.2, std: 100, unit: 'G', pieceGrams: 250 },
+            'KOLHAPURI CHICKEN': { kcal: 185, p: 16.8, c: 4.0, f: 11.5, std: 100, unit: 'G', pieceGrams: 250 },
+            'SAOJI CHICKEN': { kcal: 190, p: 17.0, c: 3.8, f: 12.0, std: 100, unit: 'G', pieceGrams: 250 },
+            'AMTI': { kcal: 75, p: 3.2, c: 11.5, f: 1.8, std: 100, unit: 'G', pieceGrams: 150 },
+            'KATACHI AMTI': { kcal: 70, p: 2.8, c: 10.8, f: 1.6, std: 100, unit: 'G', pieceGrams: 150 },
+            'VARAN BHAT': { kcal: 135, p: 3.8, c: 24.5, f: 2.5, std: 100, unit: 'G', pieceGrams: 200 },
+            'MASALE BHAT': { kcal: 160, p: 3.5, c: 28.0, f: 4.2, std: 100, unit: 'G', pieceGrams: 200 },
+            'METKUT BHAT': { kcal: 145, p: 4.2, c: 26.0, f: 2.8, std: 100, unit: 'G', pieceGrams: 180 },
+            'KOSHIMBIR': { kcal: 60, p: 2.1, c: 5.5, f: 3.2, std: 100, unit: 'G', pieceGrams: 100 },
+            'KHAMANG KAKDI': { kcal: 65, p: 2.2, c: 5.8, f: 3.6, std: 100, unit: 'G', pieceGrams: 100 },
+            'ALU VADI': { kcal: 230, p: 6.5, c: 28.0, f: 10.5, std: 100, unit: 'G', pieceGrams: 30 },
+            'PATRA': { kcal: 230, p: 6.5, c: 28.0, f: 10.5, std: 100, unit: 'G', pieceGrams: 30 },
+            'KANDA BHAJI': { kcal: 290, p: 5.8, c: 34.0, f: 15.2, std: 100, unit: 'G', pieceGrams: 100 },
+            'BATATA BHAJI': { kcal: 260, p: 4.5, c: 32.0, f: 12.8, std: 100, unit: 'G', pieceGrams: 100 },
+            'MIRCHI BHAJI': { kcal: 240, p: 4.2, c: 28.0, f: 12.5, std: 100, unit: 'G', pieceGrams: 100 },
+            'MOONG BHAJI': { kcal: 250, p: 8.5, c: 31.0, f: 11.0, std: 100, unit: 'G', pieceGrams: 100 },
+            'BHAJANI THALIPEETH': { kcal: 260, p: 7.2, c: 34.0, f: 11.0, std: 100, unit: 'G', pieceGrams: 140 },
+            'UPVAS KACHORI': { kcal: 280, p: 3.2, c: 38.0, f: 13.0, std: 100, unit: 'G', pieceGrams: 80 },
+            'SABUDANA THALIPEETH': { kcal: 240, p: 3.0, c: 36.0, f: 9.5, std: 100, unit: 'G', pieceGrams: 120 },
+            'BHAGAR': { kcal: 130, p: 2.8, c: 26.0, f: 1.5, std: 100, unit: 'G', pieceGrams: 150 },
+            'VARAI KHICHDI': { kcal: 130, p: 2.8, c: 26.0, f: 1.5, std: 100, unit: 'G', pieceGrams: 150 },
+            'SHENGDANA CHUTNEY': { kcal: 520, p: 18.0, c: 22.0, f: 40.0, std: 100, unit: 'G', pieceGrams: 15 },
+            'SOLAPURI CHENNA CHUTNEY': { kcal: 480, p: 16.5, c: 25.0, f: 36.0, std: 100, unit: 'G', pieceGrams: 15 },
+            'KARANJI': { kcal: 420, p: 5.2, c: 56.0, f: 19.0, std: 100, unit: 'G', pieceGrams: 35 },
+            'ANARSE': { kcal: 450, p: 4.8, c: 64.0, f: 19.5, std: 100, unit: 'G', pieceGrams: 30 },
+            'CHAKLI': { kcal: 500, p: 8.2, c: 58.0, f: 26.0, std: 100, unit: 'G', pieceGrams: 20 },
+            'PUNERI CHAKLI': { kcal: 500, p: 8.2, c: 58.0, f: 26.0, std: 100, unit: 'G', pieceGrams: 20 },
+            'SHANKARPALYA': { kcal: 480, p: 6.5, c: 62.0, f: 22.8, std: 100, unit: 'G', pieceGrams: 10 },
+            'NAMKEEN SHANKARPALI': { kcal: 460, p: 7.2, c: 58.0, f: 22.0, std: 100, unit: 'G', pieceGrams: 10 },
+            'CHIROOTE': { kcal: 460, p: 5.0, c: 60.0, f: 22.0, std: 100, unit: 'G', pieceGrams: 40 },
+            'BESAN LADDOO': { kcal: 500, p: 9.5, c: 58.0, f: 25.0, std: 100, unit: 'G', pieceGrams: 35 },
+            'RAVA LADDOO': { kcal: 440, p: 6.2, c: 64.0, f: 18.0, std: 100, unit: 'G', pieceGrams: 35 },
+            'MOTICHUR LADDOO': { kcal: 420, p: 5.5, c: 62.0, f: 17.5, std: 100, unit: 'G', pieceGrams: 40 },
+            'DINGAR LADDOO': { kcal: 520, p: 8.0, c: 52.0, f: 30.0, std: 100, unit: 'G', pieceGrams: 40 },
+            'METHI LADDOO': { kcal: 490, p: 8.5, c: 54.0, f: 26.0, std: 100, unit: 'G', pieceGrams: 35 },
+            'TILGUL LADDOO': { kcal: 480, p: 10.2, c: 52.0, f: 25.0, std: 100, unit: 'G', pieceGrams: 25 },
+            'PURAN MODAK': { kcal: 280, p: 6.0, c: 50.0, f: 6.5, std: 100, unit: 'G', pieceGrams: 50 },
+            'FRIED MODAK': { kcal: 380, p: 5.2, c: 52.0, f: 16.5, std: 100, unit: 'G', pieceGrams: 45 },
+            'MAWA MODAK': { kcal: 410, p: 7.5, c: 51.0, f: 19.2, std: 100, unit: 'G', pieceGrams: 35 },
+            'MALAI PEDHA': { kcal: 390, p: 7.2, c: 52.0, f: 17.0, std: 100, unit: 'G', pieceGrams: 25 },
+            'DHARWAD PEDHA': { kcal: 420, p: 7.0, c: 54.0, f: 19.5, std: 100, unit: 'G', pieceGrams: 25 },
+            'SATARA KANDHI PEDHA': { kcal: 400, p: 7.1, c: 53.0, f: 18.0, std: 100, unit: 'G', pieceGrams: 25 },
+            'KANDHI PEDHA': { kcal: 400, p: 7.1, c: 53.0, f: 18.0, std: 100, unit: 'G', pieceGrams: 25 },
+            'VAISHALI CHEESE SP MASALA DOSA': { kcal: 225, p: 5.8, c: 26.0, f: 10.8, std: 100, unit: 'G', pieceGrams: 220 },
+            'WADESHWAR RAVA DOSA': { kcal: 210, p: 4.5, c: 29.0, f: 8.5, std: 100, unit: 'G', pieceGrams: 170 },
+            'WADESHWAR ONION UTTAPAM': { kcal: 190, p: 4.2, c: 28.0, f: 6.8, std: 100, unit: 'G', pieceGrams: 180 },
+            'ROOPALI IDLI SAMBAR': { kcal: 130, p: 4.0, c: 22.0, f: 2.8, std: 100, unit: 'G', pieceGrams: 200 },
+            'ROOPALI MASALA DOSA': { kcal: 200, p: 4.5, c: 28.5, f: 7.8, std: 100, unit: 'G', pieceGrams: 180 },
+            'SUBHADRA PHOOLEY SHAK': { kcal: 120, p: 3.5, c: 15.0, f: 5.2, std: 100, unit: 'G', pieceGrams: 150 },
+            'AMRUTANAND BHEL': { kcal: 240, p: 5.5, c: 38.0, f: 7.5, std: 100, unit: 'G', pieceGrams: 120 },
+            'TULSIBAUG KACHORI': { kcal: 280, p: 5.2, c: 36.0, f: 13.0, std: 100, unit: 'G', pieceGrams: 90 },
+            'TULSIBAUG SAMOSA': { kcal: 270, p: 4.8, c: 32.0, f: 13.8, std: 100, unit: 'G', pieceGrams: 80 },
+            'SWASTAGEET FRANKIE': { kcal: 220, p: 12.0, c: 25.0, f: 7.5, std: 100, unit: 'G', pieceGrams: 140 },
+            'FC ROAD MOMOS': { kcal: 175, p: 6.0, c: 32.5, f: 2.5, std: 100, unit: 'G', pieceGrams: 120 },
+            'CAMP SANDWICH': { kcal: 220, p: 8.5, c: 28.0, f: 8.2, std: 100, unit: 'G', pieceGrams: 150 },
+            'CAMP CHEESE TOAST': { kcal: 250, p: 9.2, c: 28.0, f: 11.5, std: 100, unit: 'G', pieceGrams: 140 },
+            'SUPREME PAV BHAJI CHEESE': { kcal: 194, p: 4.5, c: 21.2, f: 10.0, std: 100, unit: 'G', pieceGrams: 320 },
+            'CREME LUXURY COLD COFFEE': { kcal: 135, p: 2.5, c: 20.0, f: 5.2, std: 100, unit: 'ML', pieceGrams: 250 },
+            'MUKESH CHAT SEV PURI': { kcal: 220, p: 4.8, c: 32.0, f: 8.5, std: 100, unit: 'G', pieceGrams: 120 },
+            'APTE ROAD DOSA': { kcal: 210, p: 4.5, c: 29.0, f: 8.5, std: 100, unit: 'G', pieceGrams: 180 },
+            'PIMPRI DAHI VADA': { kcal: 160, p: 5.2, c: 21.0, f: 6.2, std: 100, unit: 'G', pieceGrams: 180 },
+            'PCMC CHICKEN HANDI': { kcal: 185, p: 16.8, c: 4.0, f: 11.5, std: 100, unit: 'G', pieceGrams: 250 },
+            'PCMC MUTTON HANDI': { kcal: 210, p: 17.0, c: 3.0, f: 14.5, std: 100, unit: 'G', pieceGrams: 250 },
+            'SANGAMNER MAVAPEDA': { kcal: 390, p: 7.2, c: 52.0, f: 17.0, std: 100, unit: 'G', pieceGrams: 25 },
+            'KOLHAPURI MISAL': { kcal: 190, p: 6.8, c: 20.5, f: 9.2, std: 100, unit: 'G', pieceGrams: 300 },
+            'NASHIK MISAL': { kcal: 180, p: 6.5, c: 20.0, f: 8.5, std: 100, unit: 'G', pieceGrams: 300 },
+            'PUNERI PITLA': { kcal: 150, p: 6.2, c: 18.0, f: 5.8, std: 100, unit: 'G', pieceGrams: 150 },
+            'SHENGA CHUTNEY BHAKRI': { kcal: 230, p: 7.8, c: 32.0, f: 8.2, std: 100, unit: 'G', pieceGrams: 120 },
+
+            // ALCOHOLIC DRINKS, CRAFT BREWS & SPIRITS (STANDARD INDIAN SERVINGS)
+            'BEER': { kcal: 43, p: 0.5, c: 3.5, f: 0.0, std: 100, unit: 'ML', pieceGrams: 330 },
+            'KINGFISHER': { kcal: 43, p: 0.5, c: 3.5, f: 0.0, std: 100, unit: 'ML', pieceGrams: 330 },
+            'BIRA': { kcal: 45, p: 0.6, c: 3.8, f: 0.0, std: 100, unit: 'ML', pieceGrams: 330 },
+            'BIRA 91': { kcal: 45, p: 0.6, c: 3.8, f: 0.0, std: 100, unit: 'ML', pieceGrams: 330 },
+            'CRAFT BEER': { kcal: 50, p: 0.8, c: 4.5, f: 0.0, std: 100, unit: 'ML', pieceGrams: 500 },
+            'PUNE CRAFT BEER': { kcal: 50, p: 0.8, c: 4.5, f: 0.0, std: 100, unit: 'ML', pieceGrams: 500 },
+            'DOOLALLY': { kcal: 50, p: 0.8, c: 4.5, f: 0.0, std: 100, unit: 'ML', pieceGrams: 500 },
+            'EFFINGUT': { kcal: 50, p: 0.8, c: 4.5, f: 0.0, std: 100, unit: 'ML', pieceGrams: 500 },
+            'OLD MONK': { kcal: 220, p: 0.0, c: 0.1, f: 0.0, std: 100, unit: 'ML', pieceGrams: 60 },
+            'RUM': { kcal: 220, p: 0.0, c: 0.1, f: 0.0, std: 100, unit: 'ML', pieceGrams: 60 },
+            'WHISKY': { kcal: 220, p: 0.0, c: 0.1, f: 0.0, std: 100, unit: 'ML', pieceGrams: 60 },
+            'BLENDERS PRIDE': { kcal: 220, p: 0.0, c: 0.1, f: 0.0, std: 100, unit: 'ML', pieceGrams: 60 },
+            'ROYAL CHALLENGE': { kcal: 220, p: 0.0, c: 0.1, f: 0.0, std: 100, unit: 'ML', pieceGrams: 60 },
+            'SULA WINE': { kcal: 85, p: 0.1, c: 2.6, f: 0.0, std: 100, unit: 'ML', pieceGrams: 150 },
+            'RED WINE': { kcal: 85, p: 0.1, c: 2.6, f: 0.0, std: 100, unit: 'ML', pieceGrams: 150 },
+            'WHITE WINE': { kcal: 80, p: 0.1, c: 1.8, f: 0.0, std: 100, unit: 'ML', pieceGrams: 150 },
+            'VODKA': { kcal: 220, p: 0.0, c: 0.0, f: 0.0, std: 100, unit: 'ML', pieceGrams: 60 },
+            'GIN': { kcal: 220, p: 0.0, c: 0.0, f: 0.0, std: 100, unit: 'ML', pieceGrams: 60 },
+            'TODDY': { kcal: 40, p: 0.2, c: 4.5, f: 0.0, std: 100, unit: 'ML', pieceGrams: 200 },
+            'TAADI': { kcal: 40, p: 0.2, c: 4.5, f: 0.0, std: 100, unit: 'ML', pieceGrams: 200 },
+
+            // NON-ALCOHOLIC REGIONAL DRINKS, SARBATS & MILK SHAKES
+            'GANNACHA RAS': { kcal: 70, p: 0.2, c: 18.0, f: 0.1, std: 100, unit: 'ML', pieceGrams: 250 },
+            'SUGARCANE JUICE': { kcal: 70, p: 0.2, c: 18.0, f: 0.1, std: 100, unit: 'ML', pieceGrams: 250 },
+            'NEERA': { kcal: 50, p: 0.3, c: 12.0, f: 0.1, std: 100, unit: 'ML', pieceGrams: 200 },
+            'KOKUM SARBAT': { kcal: 45, p: 0.1, c: 11.5, f: 0.0, std: 100, unit: 'ML', pieceGrams: 200 },
+            'KACCHI KAIRI SARBAT': { kcal: 55, p: 0.2, c: 14.0, f: 0.0, std: 100, unit: 'ML', pieceGrams: 200 },
+            'MASALA MILK': { kcal: 120, p: 4.2, c: 14.5, f: 5.5, std: 100, unit: 'ML', pieceGrams: 200 },
+            'KOJAGIRI MILK': { kcal: 120, p: 4.2, c: 14.5, f: 5.5, std: 100, unit: 'ML', pieceGrams: 200 },
+            'BADAM MILK': { kcal: 110, p: 3.8, c: 13.5, f: 4.8, std: 100, unit: 'ML', pieceGrams: 200 },
+            'THANDAI': { kcal: 130, p: 4.5, c: 16.0, f: 5.8, std: 100, unit: 'ML', pieceGrams: 200 },
+            'JALJEERA': { kcal: 25, p: 0.3, c: 5.8, f: 0.1, std: 100, unit: 'ML', pieceGrams: 200 },
+            'NIMBU PANI': { kcal: 35, p: 0.1, c: 9.0, f: 0.0, std: 100, unit: 'ML', pieceGrams: 250 },
+            'LIME SODA': { kcal: 35, p: 0.1, c: 9.0, f: 0.0, std: 100, unit: 'ML', pieceGrams: 250 },
+            'LASSI': { kcal: 110, p: 3.5, c: 16.0, f: 3.5, std: 100, unit: 'ML', pieceGrams: 250 },
+            'PUNERI LASSI': { kcal: 110, p: 3.5, c: 16.0, f: 3.5, std: 100, unit: 'ML', pieceGrams: 250 },
+            'BUTTERMILK': { kcal: 30, p: 1.8, c: 2.8, f: 1.2, std: 100, unit: 'ML', pieceGrams: 200 },
+            'TAAS': { kcal: 30, p: 1.8, c: 2.8, f: 1.2, std: 100, unit: 'ML', pieceGrams: 200 },
+            'MATTHA': { kcal: 35, p: 1.9, c: 3.2, f: 1.4, std: 100, unit: 'ML', pieceGrams: 200 },
+
+            // ADDITIONAL TRADITIONAL SWEETS & DESSERTS
+            'AMRAKHAND': { kcal: 290, p: 6.8, c: 45.0, f: 9.5, std: 100, unit: 'G', pieceGrams: 100 },
+            'RABDI': { kcal: 260, p: 8.0, c: 32.0, f: 11.5, std: 100, unit: 'G', pieceGrams: 100 },
+            'GAJAR HALWA': { kcal: 220, p: 4.2, c: 32.0, f: 8.5, std: 100, unit: 'G', pieceGrams: 150 },
+            'DUDHI HALWA': { kcal: 180, p: 3.8, c: 28.0, f: 6.2, std: 100, unit: 'G', pieceGrams: 150 },
+            'MOONG DAL HALWA': { kcal: 380, p: 8.5, c: 48.0, f: 17.5, std: 100, unit: 'G', pieceGrams: 120 },
+            'RASMALAI': { kcal: 220, p: 7.2, c: 26.0, f: 9.8, std: 100, unit: 'G', pieceGrams: 100 },
+            'RASGULLA': { kcal: 180, p: 3.8, c: 38.0, f: 1.2, std: 100, unit: 'G', pieceGrams: 100 },
+            'KALAKAND': { kcal: 350, p: 11.2, c: 42.0, f: 15.5, std: 100, unit: 'G', pieceGrams: 40 },
+            'SOAN PAPDI': { kcal: 480, p: 5.8, c: 62.0, f: 23.5, std: 100, unit: 'G', pieceGrams: 30 },
+            'MYSORE PAK': { kcal: 520, p: 4.5, c: 56.0, f: 31.0, std: 100, unit: 'G', pieceGrams: 35 },
+            'SHEER KHURMA': { kcal: 180, p: 4.8, c: 26.0, f: 6.8, std: 100, unit: 'G', pieceGrams: 180 },
+            'PHIRNI': { kcal: 160, p: 4.2, c: 24.0, f: 5.2, std: 100, unit: 'G', pieceGrams: 150 },
+            'COCONUT LADDOO': { kcal: 450, p: 5.2, c: 54.0, f: 23.5, std: 100, unit: 'G', pieceGrams: 35 },
+            'NARYAL LADDU': { kcal: 450, p: 5.2, c: 54.0, f: 23.5, std: 100, unit: 'G', pieceGrams: 35 },
+            'ANJEER BARFI': { kcal: 380, p: 6.5, c: 58.0, f: 14.0, std: 100, unit: 'G', pieceGrams: 30 },
+            'KAJU ROLL': { kcal: 460, p: 10.5, c: 56.0, f: 21.5, std: 100, unit: 'G', pieceGrams: 25 }
         };
 
         const ACTIVITY_DB = {
@@ -953,6 +1109,133 @@
             'CRICKET': 350, 'DANCING': 400, 'SQUATS': 500, 'PUSHUPS': 400
         };
 
+        const parseWordToNumber = (str) => {
+            return str
+                .replace(/\bONE\b/g, '1')
+                .replace(/\bTWO\b/g, '2')
+                .replace(/\bTHREE\b/g, '3')
+                .replace(/\bFOUR\b/g, '4')
+                .replace(/\bFIVE\b/g, '5')
+                .replace(/\bSIX\b/g, '6')
+                .replace(/\bSEVEN\b/g, '7')
+                .replace(/\bEIGHT\b/g, '8')
+                .replace(/\bNINE\b/g, '9')
+                .replace(/\bTEN\b/g, '10')
+                .replace(/\bHALF\b/g, '0.5');
+        };
+
+        const getItemMacros = (item) => {
+            if (typeof item.p === 'number' && typeof item.c === 'number' && typeof item.f === 'number') {
+                return { p: item.p, c: item.c, f: item.f };
+            }
+
+            const nameUpper = (item.name || '').toUpperCase();
+            let foundFood = null;
+            const sortedFoods = Object.keys(FOOD_DB).sort((a, b) => b.length - a.length);
+
+            for (const food of sortedFoods) {
+                if (nameUpper.replace(/\s+/g, '').includes(food.replace(/\s+/g, ''))) {
+                    foundFood = FOOD_DB[food];
+                    break;
+                }
+            }
+
+            if (foundFood) {
+                const factor = (item.kcal || foundFood.kcal) / (foundFood.kcal || 150);
+                return {
+                    p: (foundFood.p || 0) * factor,
+                    c: (foundFood.c || 0) * factor,
+                    f: (foundFood.f || 0) * factor
+                };
+            }
+
+            const ratioKcal = (item.kcal || 150) / 150;
+            return {
+                p: 3.5 * ratioKcal,
+                c: 22.0 * ratioKcal,
+                f: 5.0 * ratioKcal
+            };
+        };
+
+        // Smart Categorical Macro Estimator Fallback Engine
+        const estimateCategoryMacros = (query, hasExplicitGramWeight) => {
+            const q = query.toUpperCase();
+
+            // Category 1: Poultry & Lean Meats
+            if (q.includes('CHICKEN') || q.includes('TURKEY') || q.includes('TANDOORI') || q.includes('TIKKA')) {
+                return { kcal: 180, p: 26.0, c: 3.0, f: 7.0, std: 100, pieceGrams: 150, unit: 'G' };
+            }
+            // Category 2: Red Meats
+            if (q.includes('MUTTON') || q.includes('LAMB') || q.includes('BEEF') || q.includes('KEEMA')) {
+                return { kcal: 250, p: 22.0, c: 2.0, f: 18.0, std: 100, pieceGrams: 150, unit: 'G' };
+            }
+            // Category 3: Fish & Seafood
+            if (q.includes('FISH') || q.includes('SURMAI') || q.includes('POMFRET') || q.includes('PRAWN') || q.includes('SALMON')) {
+                return { kcal: 190, p: 22.0, c: 1.0, f: 11.0, std: 100, pieceGrams: 120, unit: 'G' };
+            }
+            // Category 4: High-Protein Dairy & Whey
+            if (q.includes('WHEY') || q.includes('ISOLATE') || q.includes('PROTEIN') || q.includes('PANEER') || q.includes('CURD') || q.includes('YOGURT')) {
+                return { kcal: 240, p: 20.0, c: 10.0, f: 12.0, std: 100, pieceGrams: 50, unit: 'G' };
+            }
+            // Category 5: Chocolates, Candies, Wafers, Bars
+            if (q.includes('BAR') || q.includes('CHOCOLATE') || q.includes('CANDY') || q.includes('WAFER') || q.includes('KIT') || q.includes('MILKY') || q.includes('SNICKER')) {
+                return { kcal: 490, p: 8.0, c: 61.0, f: 24.0, std: 100, pieceGrams: 20, unit: 'G' };
+            }
+            // Category 6: Fast Food, Rolls, Wraps, Burgers
+            if (q.includes('ROLL') || q.includes('FRANKIE') || q.includes('WRAP') || q.includes('SHAWARMA') || q.includes('BURGER') || q.includes('PIZZA')) {
+                return { kcal: 230, p: 14.0, c: 26.0, f: 9.0, std: 100, pieceGrams: 140, unit: 'G' };
+            }
+            // Category 7: Cereals, Oats, Rice, Rotis
+            if (q.includes('OAT') || q.includes('OATS') || q.includes('MUESLI') || q.includes('ROTI') || q.includes('RICE') || q.includes('BREAD')) {
+                return { kcal: 360, p: 12.0, c: 65.0, f: 5.0, std: 100, pieceGrams: 50, unit: 'G' };
+            }
+
+            // Universal Default Fallback
+            return { kcal: 200, p: 8.0, c: 28.0, f: 6.0, std: 100, pieceGrams: 100, unit: 'G' };
+        };
+
+        // Multi-Engine Online Live Nutrition Lookup
+        const fetchOnlineNutrition = async (foodQuery, hasExplicitGramWeight) => {
+            const cleanQuery = foodQuery.trim();
+            if (!cleanQuery) return null;
+
+            try {
+                const res = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(cleanQuery)}&search_simple=1&action=process&json=1`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.products && data.products.length > 0) {
+                        for (let prod of data.products) {
+                            const nutriments = prod.nutriments || {};
+                            const kcal100 = nutriments['energy-kcal_100g'] || nutriments['energy-kcal_value'] || (nutriments['energy_100g'] ? nutriments['energy_100g'] / 4.184 : 0);
+
+                            if (kcal100 && kcal100 > 10) {
+                                const p100 = nutriments['proteins_100g'] || 8;
+                                const c100 = nutriments['carbohydrates_100g'] || 20;
+                                const f100 = nutriments['fat_100g'] || 5;
+
+                                const queryUpper = cleanQuery.toUpperCase();
+                                const isSnackOrBar = queryUpper.includes('BAR') || queryUpper.includes('CHOCOLATE') || queryUpper.includes('CANDY') || queryUpper.includes('SNACK') || queryUpper.includes('WAFER') || queryUpper.includes('KIT') || queryUpper.includes('MILKY');
+
+                                const pieceGrams = isSnackOrBar ? 20 : 100;
+
+                                return {
+                                    kcal: Math.round(kcal100),
+                                    p: parseFloat(p100.toFixed(1)),
+                                    c: parseFloat(c100.toFixed(1)),
+                                    f: parseFloat(f100.toFixed(1)),
+                                    std: 100,
+                                    pieceGrams: pieceGrams,
+                                    unit: 'G'
+                                };
+                            }
+                        }
+                    }
+                }
+            } catch (e) {}
+
+            return null;
+        };
+
         function App() {
             const [stats, setStats] = useState(() => {
                 try {
@@ -961,9 +1244,9 @@
                 } catch (e) { return { weight: '70', height: '175', age: 25, gender: 'M' }; }
             });
 
-            // Theme Management: 'GREEN', 'PURPLE', 'BEIGE'
             const [theme, setTheme] = useState(() => {
-                return localStorage.getItem('cyber_theme') || 'GREEN';
+                const saved = localStorage.getItem('cyber_theme') || 'GREEN';
+                return (saved === 'ARCADE' || saved === 'SELPHIE') ? 'GREEN' : saved;
             });
 
             useEffect(() => {
@@ -992,11 +1275,34 @@
                 localStorage.setItem('cyber_current_page', page);
             };
 
-            const [goal, setGoal] = useState('MAINTAIN');
-            const [baseCalories] = useState(2150);
-            const [target, setTarget] = useState(2150);
+            const [goal, setGoal] = useState(() => {
+                return localStorage.getItem('cyber_goal') || 'MAINTAIN';
+            });
 
-            // Per-day state
+            const calculateBaseCalories = (wStr, hStr, aNum, gStr) => {
+                const w = parseFloat(wStr) || 70;
+                const h = parseFloat(hStr) || 175;
+                const a = parseFloat(aNum) || 25;
+                const isMale = (gStr || 'M').toUpperCase().startsWith('M');
+                const bmr = (10 * w) + (6.25 * h) - (5 * a) + (isMale ? 5 : -161);
+                return Math.round(bmr * 1.375);
+            };
+
+            const baseCalories = calculateBaseCalories(stats.weight, stats.height, stats.age, stats.gender);
+            const [target, setTarget] = useState(baseCalories);
+
+            useEffect(() => {
+                let newTarget = baseCalories;
+                if (goal === 'CUT') newTarget = baseCalories - 500;
+                else if (goal === 'BULK') newTarget = baseCalories + 500;
+                const finalTarget = Math.max(1200, newTarget);
+                setTarget(finalTarget);
+                localStorage.setItem('cyber_target', finalTarget);
+                if (window.AndroidHost && window.AndroidHost.syncTarget) {
+                    window.AndroidHost.syncTarget(finalTarget);
+                }
+            }, [stats.weight, stats.height, stats.age, stats.gender, goal]);
+
             const [consumed, setConsumed] = useState(0);
             const [burned, setBurned] = useState(0);
             const [protocolBurnOffset, setProtocolBurnOffset] = useState(0);
@@ -1007,19 +1313,26 @@
                 { id: 'UNIT_04', label: 'DINNER', items: [] },
             ]);
             const [activities, setActivities] = useState([]);
+            const [historyLogs, setHistoryLogs] = useState(() => {
+                try {
+                    const saved = localStorage.getItem('cyber_rolling_history');
+                    return saved ? JSON.parse(saved) : [];
+                } catch (e) { return []; }
+            });
 
-            // Protocol / Hub State
             const [weeklySplits, setWeeklySplits] = useState(() => {
                 const saved = localStorage.getItem('cyber_weekly_split');
                 return saved ? JSON.parse(saved) : DEFAULT_SPLITS;
             });
 
-            const todayIdx = (new Date().getDay() + 6) % 7; // Mon = 0 ... Sun = 6
+            const todayIdx = (new Date().getDay() + 6) % 7;
             const [selectedDayIdx, setSelectedDayIdx] = useState(todayIdx);
             const [quoteIdx, setQuoteIdx] = useState(0);
             const [splitPickerDay, setSplitPickerDay] = useState(null);
+            const [customSplitName, setCustomSplitName] = useState('');
             const [imageError, setImageError] = useState(false);
             const [showThemeModal, setShowThemeModal] = useState(false);
+            const [isOnlineFetching, setIsOnlineFetching] = useState(false);
 
             const [checkedExercises, setCheckedExercises] = useState({});
             const [isProtocolExecuted, setIsProtocolExecuted] = useState(() => {
@@ -1027,12 +1340,10 @@
                 return localStorage.getItem(`cyber_protocol_executed_${todayStr}`) === 'true';
             });
 
-            // Modal Dialog States
-            const [dialogMode, setDialogMode] = useState(null); // 'FOOD', 'ACTIVITY', 'METRIC_WGT', 'METRIC_HGT', 'METRIC_AGE', 'METRIC_GEN'
+            const [dialogMode, setDialogMode] = useState(null);
             const [activeUnitId, setActiveUnitId] = useState(null);
             const [inputValue, setInputValue] = useState('');
 
-            // Widget Quick Log Integration Bridge
             useEffect(() => {
                 window.triggerQuickLog = (mealName) => {
                     const unitMap = { 'BREAKFAST': 'UNIT_01', 'LUNCH': 'UNIT_02', 'SNACKS': 'UNIT_03', 'DINNER': 'UNIT_04' };
@@ -1048,33 +1359,96 @@
                 localStorage.setItem('cyber_weekly_split', JSON.stringify(weeklySplits));
             }, [weeklySplits]);
 
-            // Sync today's data from local storage
             useEffect(() => {
-                setConsumed(parseInt(localStorage.getItem('cyber_consumed') || '0'));
-                setBurned(parseInt(localStorage.getItem('cyber_burned') || '0'));
-                const savedUnits = localStorage.getItem('cyber_units');
-                if (savedUnits) setIntakeUnits(JSON.parse(savedUnits));
-                const savedActs = localStorage.getItem('cyber_activities');
-                if (savedActs) setActivities(JSON.parse(savedActs));
+                const todayDateStr = new Date().toLocaleDateString();
+                const lastSavedDate = localStorage.getItem('cyber_last_date');
 
-                const todayStr = new Date().toLocaleDateString();
-                if (localStorage.getItem(`cyber_protocol_executed_${todayStr}`) === 'true') {
-                    setIsProtocolExecuted(true);
-                    setProtocolBurnOffset(300);
+                if (lastSavedDate && lastSavedDate !== todayDateStr) {
+                    const prevConsumed = parseInt(localStorage.getItem('cyber_consumed') || '0');
+                    const prevBurned = parseInt(localStorage.getItem('cyber_burned') || '0');
+                    const prevTarget = target;
+
+                    let prevProtein = 0, prevCarbs = 0, prevFats = 0;
+                    try {
+                        const savedUnits = JSON.parse(localStorage.getItem('cyber_units') || '[]');
+                        savedUnits.forEach(u => {
+                            (u.items || []).forEach(it => {
+                                const m = getItemMacros(it);
+                                prevProtein += m.p;
+                                prevCarbs += m.c;
+                                prevFats += m.f;
+                            });
+                        });
+                    } catch(e) {}
+
+                    const yesterdayLog = {
+                        date: lastSavedDate,
+                        consumed: prevConsumed,
+                        target: prevTarget,
+                        burned: prevBurned,
+                        protein: Math.round(prevProtein),
+                        carbs: Math.round(prevCarbs),
+                        fats: Math.round(prevFats)
+                    };
+
+                    const existingLogs = JSON.parse(localStorage.getItem('cyber_rolling_history') || '[]');
+                    const updatedLogs = [yesterdayLog, ...existingLogs].slice(0, 2);
+
+                    localStorage.setItem('cyber_rolling_history', JSON.stringify(updatedLogs));
+                    setHistoryLogs(updatedLogs);
+
+                    localStorage.setItem('cyber_last_date', todayDateStr);
+                    localStorage.setItem('cyber_consumed', '0');
+                    localStorage.setItem('cyber_burned', '0');
+                    localStorage.setItem('cyber_activities', '[]');
+                    const cleanUnits = [
+                        { id: 'UNIT_01', label: 'BREAKFAST', items: [] },
+                        { id: 'UNIT_02', label: 'LUNCH', items: [] },
+                        { id: 'UNIT_03', label: 'SNACKS', items: [] },
+                        { id: 'UNIT_04', label: 'DINNER', items: [] },
+                    ];
+                    localStorage.setItem('cyber_units', JSON.stringify(cleanUnits));
+
+                    setConsumed(0);
+                    setBurned(0);
+                    setActivities([]);
+                    setIntakeUnits(cleanUnits);
+                    setIsProtocolExecuted(false);
+                } else {
+                    setConsumed(parseInt(localStorage.getItem('cyber_consumed') || '0'));
+                    setBurned(parseInt(localStorage.getItem('cyber_burned') || '0'));
+                    const savedUnits = localStorage.getItem('cyber_units');
+                    if (savedUnits) setIntakeUnits(JSON.parse(savedUnits));
+                    const savedActs = localStorage.getItem('cyber_activities');
+                    if (savedActs) setActivities(JSON.parse(savedActs));
+                    const savedHist = localStorage.getItem('cyber_rolling_history');
+                    if (savedHist) setHistoryLogs(JSON.parse(savedHist));
+
+                    if (localStorage.getItem(`cyber_protocol_executed_${todayDateStr}`) === 'true') {
+                        setIsProtocolExecuted(true);
+                        setProtocolBurnOffset(300);
+                    }
                 }
             }, []);
 
             useEffect(() => {
+                const todayDateStr = new Date().toLocaleDateString();
+                localStorage.setItem('cyber_last_date', todayDateStr);
                 localStorage.setItem('cyber_consumed', consumed);
                 localStorage.setItem('cyber_burned', burned);
                 localStorage.setItem('cyber_units', JSON.stringify(intakeUnits));
                 localStorage.setItem('cyber_activities', JSON.stringify(activities));
                 localStorage.setItem('cyber_stats', JSON.stringify(stats));
+                localStorage.setItem('cyber_goal', goal);
+                localStorage.setItem('cyber_target', target);
 
                 if (window.AndroidHost && window.AndroidHost.syncStorage) {
                     window.AndroidHost.syncStorage(consumed, JSON.stringify(intakeUnits));
                 }
-            }, [consumed, burned, intakeUnits, activities, stats]);
+                if (window.AndroidHost && window.AndroidHost.syncTarget) {
+                    window.AndroidHost.syncTarget(target);
+                }
+            }, [consumed, burned, intakeUnits, activities, stats, goal, target]);
 
             const cycleQuote = () => {
                 setQuoteIdx(prev => (prev + 1) % QUOTES.length);
@@ -1098,13 +1472,15 @@
                     return updated;
                 });
                 setSplitPickerDay(null);
+                setCustomSplitName('');
             };
 
             const handleGoalChange = (newGoal) => {
                 setGoal(newGoal);
-                if (newGoal === 'CUT') setTarget(baseCalories - 500);
-                else if (newGoal === 'BULK') setTarget(baseCalories + 500);
-                else setTarget(baseCalories);
+                localStorage.setItem('cyber_goal', newGoal);
+                if (window.AndroidHost && window.AndroidHost.saveGoal) {
+                    window.AndroidHost.saveGoal(newGoal);
+                }
             };
 
             const removeItem = (unitId, itemIdx) => {
@@ -1126,14 +1502,13 @@
                 });
             };
 
-            // Modal Submit Logic
             const handleModalSubmit = (e) => {
                 if (e.key === 'Enter') {
                     submitDialogForm();
                 }
             };
 
-            const submitDialogForm = () => {
+            const submitDialogForm = async () => {
                 const val = inputValue.toUpperCase().trim();
                 if (!val) {
                     setDialogMode(null);
@@ -1143,86 +1518,131 @@
 
                 if (dialogMode === 'METRIC_WGT') {
                     setStats(prev => ({ ...prev, weight: val }));
+                    setDialogMode(null);
                 } else if (dialogMode === 'METRIC_HGT') {
                     setStats(prev => ({ ...prev, height: val }));
+                    setDialogMode(null);
                 } else if (dialogMode === 'METRIC_AGE') {
                     setStats(prev => ({ ...prev, age: val }));
+                    setDialogMode(null);
                 } else if (dialogMode === 'METRIC_GEN') {
                     setStats(prev => ({ ...prev, gender: val }));
+                    setDialogMode(null);
                 } else if (dialogMode === 'FOOD') {
-                    processFoodLog(val, activeUnitId || 'UNIT_01');
+                    setIsOnlineFetching(true);
+                    await processFoodLog(val, activeUnitId || 'UNIT_01');
+                    setIsOnlineFetching(false);
+                    setDialogMode(null);
                 } else if (dialogMode === 'ACTIVITY') {
                     processActivityLog(val);
+                    setDialogMode(null);
                 }
 
-                setDialogMode(null);
                 setInputValue('');
             };
 
-            const processFoodLog = (input, unitId) => {
+            // Precision Food Quantity, Weight & Smart Category Parser
+            const processFoodLog = async (input, unitId) => {
                 const parts = input.split(/ AND | WITH |\+| , |,/);
                 let totalKcal = 0;
                 let itemNames = [];
+                let itemProtein = 0, itemCarbs = 0, itemFats = 0;
 
-                parts.forEach(part => {
-                    const p = part.trim();
-                    if (!p) return;
+                for (let part of parts) {
+                    const p = parseWordToNumber(part.trim().toUpperCase());
+                    if (!p) continue;
 
-                    const weightMatch = p.match(/(\d+)\s*(G|GRAMS|ML|PCS|PC|PIECE|SLICE|SLICES)/);
-                    const countMatch = p.match(/^(\d+)\s+/);
+                    const weightMatch = p.match(/^(\d+(?:\.\d+)?)\s*(G|GRAMS|ML)\b/i);
+                    const countMatch = p.match(/^(\d+(?:\.\d+)?)\s*(PCS|PC|PIECE|PIECES|SLICE|SLICES)?\b/i);
+
+                    let totalWeightGrams = null;
+                    let pieceCount = 1;
+                    let hasExplicitGramWeight = false;
+
+                    if (weightMatch) {
+                        totalWeightGrams = parseFloat(weightMatch[1]);
+                        hasExplicitGramWeight = true;
+                    } else if (countMatch) {
+                        pieceCount = parseFloat(countMatch[1]);
+                    }
+
+                    const rawQuery = p
+                        .replace(/^(\d+(?:\.\d+)?)\s*(G|GRAMS|ML|PCS|PC|PIECE|PIECES|SLICE|SLICES)?\s*/i, '')
+                        .trim();
 
                     let foundFood = null;
                     let foodKey = null;
 
-                    const sortedFoods = Object.keys(FOOD_DB).sort((a, b) => b.length - a.length);
+                    // 1. Exact Full Query Local DB Match
+                    if (FOOD_DB[rawQuery]) {
+                        foundFood = FOOD_DB[rawQuery];
+                        foodKey = rawQuery;
+                    }
 
-                    for (const food of sortedFoods) {
-                        if (p.includes(food)) {
-                            foundFood = FOOD_DB[food];
-                            foodKey = food;
-                            break;
+                    // 2. Exact Word Boundary Local DB Check
+                    if (!foundFood) {
+                        const sortedFoods = Object.keys(FOOD_DB).sort((a, b) => b.length - a.length);
+                        for (const food of sortedFoods) {
+                            const wordRegex = new RegExp('\\b' + food.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'i');
+                            if (wordRegex.test(rawQuery)) {
+                                foundFood = FOOD_DB[food];
+                                foodKey = food;
+                                break;
+                            }
                         }
+                    }
+
+                    // 3. Online Search Fallback
+                    if (!foundFood && rawQuery.length > 2) {
+                        const onlineNutr = await fetchOnlineNutrition(rawQuery, hasExplicitGramWeight);
+                        if (onlineNutr) {
+                            foundFood = onlineNutr;
+                            foodKey = rawQuery;
+                            FOOD_DB[foodKey] = onlineNutr;
+                        }
+                    }
+
+                    // 4. Smart Categorical Fallback Engine (Guarantees realistic Macros for ANY dish)
+                    if (!foundFood) {
+                        foundFood = estimateCategoryMacros(rawQuery, hasExplicitGramWeight);
+                        foodKey = rawQuery;
                     }
 
                     let finalKcal = 0;
                     let displayName = "";
+                    let calcP = 0, calcC = 0, calcF = 0;
 
-                    if (foundFood) {
-                        let quantity = 1;
-                        if (weightMatch) {
-                            quantity = parseInt(weightMatch[1]);
-                            if (foundFood.unit === 'G' || foundFood.unit === 'ML') {
-                                finalKcal = Math.floor((foundFood.kcal * quantity) / 100);
-                                displayName = `${quantity}${foundFood.unit} ${foodKey}`;
-                            } else {
-                                finalKcal = foundFood.kcal * quantity;
-                                displayName = `${quantity} ${foodKey}`;
-                            }
-                        } else if (countMatch) {
-                            quantity = parseInt(countMatch[1]);
-                            finalKcal = (foundFood.unit === 'G' || foundFood.unit === 'ML')
-                                ? Math.floor((foundFood.kcal * foundFood.std * quantity) / 100)
-                                : foundFood.kcal * quantity;
-                            displayName = `${quantity} ${foodKey}`;
-                        } else {
-                            finalKcal = (foundFood.unit === 'G' || foundFood.unit === 'ML')
-                                ? Math.floor((foundFood.kcal * foundFood.std) / 100)
-                                : foundFood.kcal;
-                            displayName = `1 ${foodKey}`;
-                        }
+                    const baseStd = foundFood.std || 100;
+                    const pieceGrams = foundFood.pieceGrams || 100;
+
+                    let calculatedWeightGrams = 100;
+                    if (hasExplicitGramWeight && totalWeightGrams !== null) {
+                        calculatedWeightGrams = totalWeightGrams;
+                        displayName = `${totalWeightGrams}G ${foodKey}`;
                     } else {
-                        const quantity = weightMatch ? parseInt(weightMatch[1]) : 100;
-                        finalKcal = Math.floor((150 * quantity) / 100);
-                        displayName = `${quantity}G ${p}`;
+                        calculatedWeightGrams = pieceCount * pieceGrams;
+                        displayName = pieceCount > 1 ? `${pieceCount}x ${foodKey}` : `${foodKey}`;
                     }
 
+                    const factor = calculatedWeightGrams / baseStd;
+                    finalKcal = Math.floor(foundFood.kcal * factor);
+                    calcP = (foundFood.p || 0) * factor;
+                    calcC = (foundFood.c || 0) * factor;
+                    calcF = (foundFood.f || 0) * factor;
+
                     totalKcal += finalKcal;
+                    itemProtein += calcP;
+                    itemCarbs += calcC;
+                    itemFats += calcF;
                     itemNames.push(displayName);
-                });
+                }
 
                 const parsedItem = {
                     name: itemNames.join(" + "),
-                    kcal: totalKcal
+                    kcal: totalKcal,
+                    p: parseFloat(itemProtein.toFixed(1)),
+                    c: parseFloat(itemCarbs.toFixed(1)),
+                    f: parseFloat(itemFats.toFixed(1))
                 };
 
                 setIntakeUnits(prev => prev.map(unit =>
@@ -1270,18 +1690,27 @@
             };
 
             const netCalories = consumed - burned - protocolBurnOffset;
-            const proteinEst = Math.floor((consumed * 0.3) / 4);
-            const carbsEst = Math.floor((consumed * 0.5) / 4);
-            const fatEst = Math.floor((consumed * 0.2) / 9);
+
+            let proteinEst = 0, carbsEst = 0, fatEst = 0;
+            intakeUnits.forEach(unit => {
+                (unit.items || []).forEach(item => {
+                    const m = getItemMacros(item);
+                    proteinEst += m.p;
+                    carbsEst += m.c;
+                    fatEst += m.f;
+                });
+            });
+            proteinEst = Math.round(proteinEst);
+            carbsEst = Math.round(carbsEst);
+            fatEst = Math.round(fatEst);
 
             const dayNames = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
             const activeSplit = weeklySplits[selectedDayIdx];
-            const activeRoutine = ROUTINES[activeSplit] || [];
+            const activeRoutine = ROUTINES[activeSplit] || ROUTINES['CUSTOM'];
             const currentQuote = QUOTES[quoteIdx];
 
             return (
                 <div className="app-container">
-                    {/* Top HUD Telemetry Bar */}
                     <div className="top-hud">
                         <div className="hud-status">
                             <div className="status-dot"></div>
@@ -1292,7 +1721,6 @@
 
                     {currentPage === 'PROTOCOL' ? (
                         <>
-                            {/* A. Hero Header & NPC Dialogue Box */}
                             <CyberPanel title="CYBERPUNK_BONFIRE // RECOVERY_NODE" unit="HUB_01">
                                 <div className="bonfire-container">
                                     {!imageError ? (
@@ -1323,7 +1751,6 @@
                                 </div>
                             </CyberPanel>
 
-                            {/* B. 7-Day Split Selector Strip */}
                             <CyberPanel title="7-DAY SPLIT ASSIGNMENT // SELECT DAY" unit="SPLIT_02">
                                 <div className="split-strip">
                                     {dayNames.map((day, idx) => {
@@ -1337,14 +1764,13 @@
                                                 className={`split-chip ${isToday ? 'today' : ''} ${isSelected ? 'selected' : ''}`}
                                                 onClick={() => { setSelectedDayIdx(idx); setSplitPickerDay(idx); }}>
                                                 <div className="day-lbl">{day}</div>
-                                                <div className="tag-lbl">{splitTag.slice(0, 4)}</div>
+                                                <div className="tag-lbl">{splitTag.slice(0, 5)}</div>
                                             </div>
                                         );
                                     })}
                                 </div>
                             </CyberPanel>
 
-                            {/* C. Today's Protocol Dynamic Card */}
                             <CyberPanel title={`TODAY'S PROTOCOL // ${activeSplit}`} unit="ACT_03">
                                 {activeSplit === 'REST' ? (
                                     <div style={{ border: '1px solid var(--warning)', padding: '12px', background: 'rgba(0,0,0,0.5)' }}>
@@ -1404,8 +1830,15 @@
                                     ))}
                                 </div>
                                 <div className="slider-control">
-                                    <div className="slider-header"><label>TARGET_CALORIES</label><span className="delta-readout">DELTA: {target-baseCalories > 0 ? '+' : ''}{target-baseCalories} KCAL</span></div>
-                                    <input type="range" min="1000" max="4000" value={target} onChange={(e) => setTarget(parseInt(e.target.value))} />
+                                    <div className="slider-header"><label>TARGET_CALORIES (BMR: {baseCalories} KCAL)</label><span className="delta-readout">TARGET: {target} KCAL</span></div>
+                                    <input type="range" min="1000" max="4000" value={target} onChange={(e) => {
+                                        const newT = parseInt(e.target.value);
+                                        setTarget(newT);
+                                        localStorage.setItem('cyber_target', newT);
+                                        if (window.AndroidHost && window.AndroidHost.syncTarget) {
+                                            window.AndroidHost.syncTarget(newT);
+                                        }
+                                    }} />
                                 </div>
                                 <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
                                     <div style={{ flex: 1 }}><ProgressBar current={Math.max(0, netCalories)} target={target} label="NET_CONSUMPTION" /></div>
@@ -1420,7 +1853,6 @@
                                     <div className="macro-item"><div className="macro-header"><span>FATS</span><span>{fatEst}G</span></div><div className="macro-bar"><div className="macro-fill" style={{ width: `${Math.min(100, (fatEst / 60) * 100)}%` }}></div></div></div>
                                 </div>
 
-                                {/* Primary Log Intake Action on Core Metabolic Panel */}
                                 <div style={{ marginTop: '1rem', textAlign: 'right' }}>
                                     <TerminalButton
                                         label="[ + LOG_INTAKE ]"
@@ -1476,7 +1908,6 @@
                                     )) : <div className="no-data">STATUS: IDLE</div>}
                                 </div>
                                 <div className="unit-actions" style={{ marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    {/* Small Theme Trigger Icon Below Log Activity on the Bottom Left of Activity Page */}
                                     <div className="activity-theme-trigger" onClick={() => setShowThemeModal(true)}>
                                         ⚙️ THEME
                                     </div>
@@ -1489,10 +1920,39 @@
                                     />
                                 </div>
                             </CyberPanel>
+
+                            <CyberPanel title="PAST_PERFORMANCE // 2-DAY ROLLING TELEMETRY" unit="ACT_02">
+                                <div style={{ fontSize: '0.62rem', color: 'var(--primary-dim)', marginBottom: '10px' }}>
+                                    AUTOMATIC ROLLING LOG // STORES 2 DAYS (FIFO QUEUE):
+                                </div>
+                                {historyLogs.length > 0 ? (
+                                    historyLogs.map((log, idx) => (
+                                        <div key={idx} style={{
+                                            border: '1px solid var(--border-bright)',
+                                            padding: '10px',
+                                            marginBottom: idx === historyLogs.length - 1 ? 0 : '10px',
+                                            background: 'rgba(0,0,0,0.3)',
+                                            borderRadius: '4px'
+                                        }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.68rem', fontWeight: 'bold', marginBottom: '6px' }}>
+                                                <span style={{ color: 'var(--primary)' }}>&gt; {log.date}</span>
+                                                <span style={{ color: log.consumed > log.target ? 'var(--alert)' : 'var(--primary)' }}>
+                                                    {log.consumed} / {log.target} KCAL
+                                                </span>
+                                            </div>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.58rem', color: 'var(--primary-dim)' }}>
+                                                <span>BURNED: -{log.burned} KCAL</span>
+                                                <span>MACROS: {log.protein}G P | {log.carbs}G C | {log.fats}G F</span>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="no-data">STATUS: NO PAST HISTORY RECORDED YET (AUTOMATICALLY ROLLS AT MIDNIGHT)</div>
+                                )}
+                            </CyberPanel>
                         </>
                     )}
 
-                    {/* Theme Switcher Modal */}
                     {showThemeModal && (
                         <div className="terminal-overlay">
                             <div className="terminal-dialog">
@@ -1508,7 +1968,7 @@
                                         className="terminal-button"
                                         style={{ border: theme === 'PURPLE' ? '2px solid var(--primary)' : '1px solid var(--border)', color: '#00f0ff' }}
                                         onClick={() => { toggleTheme('PURPLE'); setShowThemeModal(false); }}>
-                                        [ ATOMIC PURPLE GAME BOY &amp; LIQUID GLASS ]
+                                        [ ATOMIC PINK GAME BOY &amp; COBALT PCB ]
                                     </button>
                                     <button
                                         className="terminal-button"
@@ -1524,13 +1984,12 @@
                         </div>
                     )}
 
-                    {/* Split Picker Dialog */}
                     {splitPickerDay !== null && (
                         <div className="terminal-overlay">
                             <div className="terminal-dialog">
                                 <div className="prompt">&gt; REASSIGN SPLIT FOR {dayNames[splitPickerDay]}...</div>
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px', margin: '1rem 0' }}>
-                                    {['PUSH', 'PULL', 'LEGS', 'UPPER', 'LOWER', 'CARDIO', 'REST', 'CUSTOM'].map(s => (
+                                    {['PUSH', 'PULL', 'LEGS', 'UPPER', 'LOWER', 'CARDIO', 'REST'].map(s => (
                                         <button
                                             key={s}
                                             className="terminal-button"
@@ -1539,14 +1998,29 @@
                                         </button>
                                     ))}
                                 </div>
-                                <div className="dialog-actions">
-                                    <TerminalButton label="CANCEL" onClick={() => setSplitPickerDay(null)} />
+                                <div style={{ marginTop: '1rem', borderTop: '1px dashed var(--border)', paddingTop: '10px' }}>
+                                    <div style={{ fontSize: '0.62rem', color: 'var(--primary-dim)', marginBottom: '6px' }}>OR TYPE CUSTOM DAY NAME:</div>
+                                    <input
+                                        className="terminal-input"
+                                        value={customSplitName}
+                                        onChange={(e) => setCustomSplitName(e.target.value)}
+                                        placeholder="E.G. ARMS & ABS"
+                                        style={{ fontSize: '0.85rem' }}
+                                    />
+                                </div>
+                                <div className="dialog-actions" style={{ marginTop: '1rem' }}>
+                                    <TerminalButton label="ABORT" onClick={() => { setSplitPickerDay(null); setCustomSplitName(''); }} />
+                                    {customSplitName.trim() && (
+                                        <TerminalButton
+                                            label="[ SAVE CUSTOM NAME ]"
+                                            onClick={() => handleUpdateSplit(splitPickerDay, customSplitName.toUpperCase().trim())}
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    {/* Input Modal Overlay - Abort on Left, Primary Log Action on Right */}
                     {dialogMode !== null && (
                         <div className="terminal-overlay">
                             <div className="terminal-dialog">
@@ -1557,7 +2031,7 @@
                                         dialogMode === 'METRIC_AGE' ? 'UPDATE AGE:' :
                                         dialogMode === 'METRIC_GEN' ? 'UPDATE GENDER (M/F):' :
                                         dialogMode === 'ACTIVITY' ? 'ENTER ACTIVITY (E.G. 1HR GYM):' :
-                                        'ENTER FOOD INTAKE (E.G. 2 ROTI AND DAL):'
+                                        'ENTER FOOD INTAKE (E.G. 50G MILKY BAR OR 200G CHICKEN):'
                                     } <span className="cursor">_</span>
                                 </div>
                                 <input
@@ -1566,31 +2040,38 @@
                                     value={inputValue}
                                     onChange={(e) => setInputValue(e.target.value)}
                                     onKeyDown={handleModalSubmit}
+                                    disabled={isOnlineFetching}
                                     placeholder={
                                         dialogMode === 'METRIC_WGT' ? "E.G. 75" :
                                         dialogMode === 'METRIC_HGT' ? "E.G. 180" :
                                         dialogMode === 'METRIC_AGE' ? "E.G. 26" :
                                         dialogMode === 'METRIC_GEN' ? "E.G. M" :
                                         dialogMode === 'ACTIVITY' ? "E.G. 1HR GYM OR 30MIN RUN" :
-                                        "E.G. 200G CHICKEN OR 2 ROTI"
+                                        "E.G. 50G MILKY BAR, 1 MILKY BAR, 200G CHICKEN"
                                     }
                                 />
+                                {isOnlineFetching && (
+                                    <div style={{ fontSize: '0.6rem', color: 'var(--warning)', marginTop: '8px', letterSpacing: '1px' }}>
+                                        [ FETCHING LIVE ONLINE NUTRITIONAL TELEMETRY... ]
+                                    </div>
+                                )}
                                 <div className="dialog-actions">
-                                    <TerminalButton label="ABORT" onClick={() => { setDialogMode(null); setInputValue(''); }} />
+                                    <TerminalButton label="ABORT" onClick={() => { setDialogMode(null); setInputValue(''); }} disabled={isOnlineFetching} />
                                     <TerminalButton
                                         label={
+                                            isOnlineFetching ? "[ SEARCHING... ]" :
                                             dialogMode === 'ACTIVITY' ? "[ LOG ACTIVITY ]" :
                                             dialogMode.startsWith('METRIC_') ? "[ UPDATE ]" :
                                             "[ LOG INTAKE ]"
                                         }
                                         onClick={submitDialogForm}
+                                        disabled={isOnlineFetching}
                                     />
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    {/* Original Clean 3-Button Bottom Dock Navigation */}
                     <div className="bottom-dock">
                         <button className="terminal-button" onClick={() => changePage('PROTOCOL')}>
                             {currentPage === 'PROTOCOL' ? '● PROTOCOL' : 'HUB'}
@@ -1607,7 +2088,7 @@
         }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+        root.render(React.createElement(App, null));
     </script>
 </body>
 </html>

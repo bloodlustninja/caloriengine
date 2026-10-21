@@ -9,14 +9,61 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.caloriengine.widget.MetabolicHudWidgetProvider
+import com.example.caloriengine.widget.QuickAddWidgetProvider
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class QuickLogActivity : AppCompatActivity() {
 
     private data class FoodRef(val kcal: Int, val std: Int, val unit: String)
 
     private val foodDb = mapOf(
+        // Street Food & Momos
+        "STEAM MOMOS" to FoodRef(35, 1, "PC"),
+        "STEAMED MOMOS" to FoodRef(35, 1, "PC"),
+        "VEG MOMOS" to FoodRef(35, 1, "PC"),
+        "MOMOS" to FoodRef(35, 1, "PC"),
+        "MOMO" to FoodRef(35, 1, "PC"),
+        "CHICKEN MOMOS" to FoodRef(45, 1, "PC"),
+        "PANEER MOMOS" to FoodRef(45, 1, "PC"),
+        "FRIED MOMOS" to FoodRef(65, 1, "PC"),
+        "SPRING ROLL" to FoodRef(150, 1, "PC"),
+        "CHOWMEIN" to FoodRef(220, 150, "G"),
+        "NOODLES" to FoodRef(220, 150, "G"),
+        "MANCHURIAN" to FoodRef(180, 150, "G"),
+
+        // Rice & Grains
+        "BHAAT" to FoodRef(130, 150, "G"),
+        "BHAT" to FoodRef(130, 150, "G"),
+        "RICE" to FoodRef(130, 150, "G"),
+        "JEERA RICE" to FoodRef(160, 150, "G"),
+        "PULAO" to FoodRef(180, 150, "G"),
+        "KHICHDI" to FoodRef(180, 150, "G"),
+        "CURD RICE" to FoodRef(180, 200, "G"),
+
+        // Sabzi & Bhaji Variations
+        "BHAJI" to FoodRef(120, 150, "G"),
+        "SABZI" to FoodRef(120, 150, "G"),
+        "SUBZI" to FoodRef(120, 150, "G"),
+        "SUBJI" to FoodRef(120, 150, "G"),
+        "TARKARI" to FoodRef(120, 150, "G"),
+        "SUKHI BHAJI" to FoodRef(140, 150, "G"),
+        "ALOO BHAJI" to FoodRef(150, 150, "G"),
+        "BATATA BHAJI" to FoodRef(150, 150, "G"),
+        "KANDA BHAJI" to FoodRef(250, 100, "G"),
+        "BHAJIYA" to FoodRef(250, 100, "G"),
+        "PAKODA" to FoodRef(250, 100, "G"),
+        "PAV BHAJI" to FoodRef(400, 1, "PLATE"),
+        "PAVBHAJI" to FoodRef(400, 1, "PLATE"),
+        "BHINDI" to FoodRef(90, 150, "G"),
+        "ALOO GOBI" to FoodRef(110, 150, "G"),
+        "MIX VEG" to FoodRef(100, 150, "G"),
+        "BHARLI VANGI" to FoodRef(180, 150, "G"),
+
         // Maharashtrian Specialties
         "MISAL PAV" to FoodRef(450, 1, "PC"),
         "MISAL" to FoodRef(350, 150, "G"),
@@ -26,8 +73,6 @@ class QuickLogActivity : AppCompatActivity() {
         "BATATA VADA" to FoodRef(180, 1, "PC"),
         "VADA PAV" to FoodRef(300, 1, "PC"),
         "VADAPAV" to FoodRef(300, 1, "PC"),
-        "PAV BHAJI" to FoodRef(400, 1, "PLATE"),
-        "PAVBHAJI" to FoodRef(400, 1, "PLATE"),
         "PAV" to FoodRef(80, 1, "PC"),
         "SABUDANA KHICHDI" to FoodRef(320, 150, "G"),
         "SABUDANA VADA" to FoodRef(220, 1, "PC"),
@@ -44,15 +89,20 @@ class QuickLogActivity : AppCompatActivity() {
         "SOL KADI" to FoodRef(70, 150, "ML"),
         "UKADICHE MODAK" to FoodRef(180, 1, "PC"),
         "MODAK" to FoodRef(180, 1, "PC"),
+        "MEDU VADA" to FoodRef(180, 1, "PC"),
+        "MEDUWADA" to FoodRef(180, 1, "PC"),
+        "MEDUVADA" to FoodRef(180, 1, "PC"),
+        "MEDU WADA" to FoodRef(180, 1, "PC"),
+        "MEDU VADAI" to FoodRef(180, 1, "PC"),
+        "VADA" to FoodRef(180, 1, "PC"),
         "KOTHAMBIR VADI" to FoodRef(180, 1, "PLATE"),
         "ALU VADI" to FoodRef(160, 1, "PLATE"),
         "USAL" to FoodRef(180, 150, "G"),
         "MATKI USAL" to FoodRef(180, 150, "G"),
         "VARAN BHAT" to FoodRef(280, 1, "PLATE"),
-        "BHARLI VANGI" to FoodRef(180, 150, "G"),
-        "KANDA BHAJI" to FoodRef(250, 100, "G"),
-        "BHAJIYA" to FoodRef(250, 100, "G"),
-        "PAKODA" to FoodRef(250, 100, "G"),
+        "VARAN BHAAT" to FoodRef(280, 1, "PLATE"),
+        "VARAN" to FoodRef(105, 150, "G"),
+        "AMTI" to FoodRef(110, 150, "G"),
         "TAAK" to FoodRef(40, 200, "ML"),
         "BUTTERMILK" to FoodRef(40, 200, "ML"),
         "SHRIKHAND" to FoodRef(280, 100, "G"),
@@ -66,41 +116,45 @@ class QuickLogActivity : AppCompatActivity() {
         "POMFRET FRY" to FoodRef(240, 1, "PC"),
 
         // North & South Indian Staples
-        "CHICKEN FRIED RICE" to FoodRef(163, 250, "G"),
-        "CHICKEN RICE" to FoodRef(140, 250, "G"),
-        "CHICKEN CURRY" to FoodRef(180, 150, "G"),
-        "CHICKEN BREAST" to FoodRef(165, 100, "G"),
-        "CHICKEN" to FoodRef(239, 100, "G"),
-        "PANEER BUTTER MASALA" to FoodRef(320, 150, "G"),
-        "SHAHI PANEER" to FoodRef(300, 150, "G"),
-        "PANEER TIKKA" to FoodRef(250, 150, "G"),
-        "PANEER" to FoodRef(265, 100, "G"),
-        "ALOO PARATHA" to FoodRef(250, 1, "PC"),
-        "PARATHA" to FoodRef(180, 1, "PC"),
         "ROTI" to FoodRef(80, 1, "PC"),
         "CHAPATI" to FoodRef(75, 1, "PC"),
         "PHULKA" to FoodRef(60, 1, "PC"),
+        "FULKA" to FoodRef(60, 1, "PC"),
+        "PARATHA" to FoodRef(180, 1, "PC"),
+        "ALOO PARATHA" to FoodRef(250, 1, "PC"),
+        "PURI" to FoodRef(110, 1, "PC"),
+        "POORI" to FoodRef(110, 1, "PC"),
         "NAAN" to FoodRef(260, 1, "PC"),
         "BUTTER NAAN" to FoodRef(310, 1, "PC"),
         "DAL TADKA" to FoodRef(110, 150, "G"),
         "DAL MAKHANI" to FoodRef(150, 150, "G"),
         "DAL" to FoodRef(105, 150, "G"),
+        "DAAL" to FoodRef(105, 150, "G"),
         "RAJMA" to FoodRef(180, 150, "G"),
         "CHOLE" to FoodRef(180, 150, "G"),
         "CHOLE BHATURE" to FoodRef(550, 1, "PLATE"),
         "SAMOSA" to FoodRef(250, 1, "PC"),
         "KACHORI" to FoodRef(280, 1, "PC"),
-        "CHICKEN BIRYANI" to FoodRef(220, 100, "G"),
-        "VEG BIRYANI" to FoodRef(180, 100, "G"),
-        "BIRYANI" to FoodRef(200, 100, "G"),
+        "CHICKEN FRIED RICE" to FoodRef(163, 250, "G"),
+        "CHICKEN RICE" to FoodRef(140, 250, "G"),
+        "CHICKEN CURRY" to FoodRef(180, 150, "G"),
+        "CHICKEN BREAST" to FoodRef(165, 100, "G"),
+        "CHICKEN" to FoodRef(239, 100, "G"),
+        "MUTTON" to FoodRef(280, 150, "G"),
+        "MUTTON KEEMA" to FoodRef(300, 150, "G"),
+        "KHEEMA" to FoodRef(300, 150, "G"),
+        "PANEER BUTTER MASALA" to FoodRef(320, 150, "G"),
+        "SHAHI PANEER" to FoodRef(300, 150, "G"),
+        "PANEER TIKKA" to FoodRef(250, 150, "G"),
+        "PANEER" to FoodRef(265, 100, "G"),
         "EGG CURRY" to FoodRef(210, 1, "PLATE"),
         "EGG BHURJI" to FoodRef(220, 1, "PLATE"),
         "OMELETTE" to FoodRef(180, 1, "PC"),
         "EGG" to FoodRef(78, 1, "PC"),
+        "ANDA" to FoodRef(78, 1, "PC"),
         "IDLI" to FoodRef(60, 1, "PC"),
-        "MASALA DOSA" to FoodRef(350, 1, "PC"),
         "DOSA" to FoodRef(140, 1, "PC"),
-        "MEDU VADA" to FoodRef(180, 1, "PC"),
+        "MASALA DOSA" to FoodRef(350, 1, "PC"),
         "UTTAPAM" to FoodRef(220, 1, "PC"),
         "UPMA" to FoodRef(200, 150, "G"),
         "HALWA" to FoodRef(300, 100, "G"),
@@ -114,7 +168,6 @@ class QuickLogActivity : AppCompatActivity() {
         "CURD" to FoodRef(60, 100, "G"),
         "DAHI" to FoodRef(60, 100, "G"),
         "MILK" to FoodRef(120, 200, "ML"),
-        "RICE" to FoodRef(130, 150, "G"),
         "OATS" to FoodRef(389, 50, "G"),
         "BANANA" to FoodRef(89, 1, "PC"),
         "APPLE" to FoodRef(52, 1, "PC"),
@@ -126,6 +179,21 @@ class QuickLogActivity : AppCompatActivity() {
         "BURGER" to FoodRef(295, 1, "PC"),
         "PIZZA" to FoodRef(266, 1, "SLICE")
     )
+
+    private fun parseWordToNumber(input: String): String {
+        return input
+            .replace(Regex("\\bONE\\b"), "1")
+            .replace(Regex("\\bTWO\\b"), "2")
+            .replace(Regex("\\bTHREE\\b"), "3")
+            .replace(Regex("\\bFOUR\\b"), "4")
+            .replace(Regex("\\bFIVE\\b"), "5")
+            .replace(Regex("\\bSIX\\b"), "6")
+            .replace(Regex("\\bSEVEN\\b"), "7")
+            .replace(Regex("\\bEIGHT\\b"), "8")
+            .replace(Regex("\\bNINE\\b"), "9")
+            .replace(Regex("\\bTEN\\b"), "10")
+            .replace(Regex("\\bHALF\\b"), "0.5")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -204,12 +272,13 @@ class QuickLogActivity : AppCompatActivity() {
     }
 
     private fun submitLog(input: String, mealName: String) {
-        val valStr = input.trim().uppercase()
-        if (valStr.isEmpty()) {
+        val rawInput = input.trim().uppercase()
+        if (rawInput.isEmpty()) {
             finish()
             return
         }
 
+        val valStr = parseWordToNumber(rawInput)
         val parts = valStr.split(" AND ", " WITH ", "+", " , ", ",")
         var totalKcal = 0
         val itemNames = mutableListOf<String>()
@@ -217,55 +286,50 @@ class QuickLogActivity : AppCompatActivity() {
         val sortedFoods = foodDb.keys.sortedByDescending { it.length }
 
         parts.forEach { part ->
-            val p = part.trim()
+            val p = part.trim().uppercase()
             if (p.isNotEmpty()) {
+                val weightMatch = Regex("(\\d+(?:\\.\\d+)?)\\s*(G|GRAMS|ML|PCS|PC|PIECE|PIECES|SLICE|SLICES)").find(p)
+                val countMatch = Regex("^(\\d+(?:\\.\\d+)?)\\s*").find(p)
+
+                var multiplier = 1.0
+                if (weightMatch != null && (weightMatch.groupValues[2] == "G" || weightMatch.groupValues[2] == "GRAMS" || weightMatch.groupValues[2] == "ML")) {
+                    multiplier = weightMatch.groupValues[1].toDoubleOrNull() ?: 1.0
+                } else if (countMatch != null) {
+                    multiplier = countMatch.groupValues[1].toDoubleOrNull() ?: 1.0
+                }
+
                 var foundFood: FoodRef? = null
                 var foodKey: String? = null
 
+                val cleanP = p.replace(Regex("\\s+"), "")
                 for (food in sortedFoods) {
-                    if (p.contains(food)) {
+                    val cleanFood = food.replace(Regex("\\s+"), "")
+                    if (cleanP.contains(cleanFood)) {
                         foundFood = foodDb[food]
                         foodKey = food
                         break
                     }
                 }
 
-                val weightMatch = Regex("(\\d+)\\s*(G|GRAMS|ML|PCS|PC|PIECE|SLICE|SLICES)").find(p)
-                val countMatch = Regex("^(\\d+)\\s+").find(p)
-
                 var finalKcal: Int
                 var displayName: String
 
                 if (foundFood != null && foodKey != null) {
-                    if (weightMatch != null) {
-                        val qty = weightMatch.groupValues[1].toIntOrNull() ?: 1
-                        if (foundFood.unit == "G" || foundFood.unit == "ML") {
-                            finalKcal = (foundFood.kcal * qty) / 100
-                            displayName = "${qty}${foundFood.unit} $foodKey"
+                    if (foundFood.unit == "G" || foundFood.unit == "ML") {
+                        val totalWeight = if (weightMatch != null && (weightMatch.groupValues[2] == "G" || weightMatch.groupValues[2] == "GRAMS" || weightMatch.groupValues[2] == "ML")) {
+                            multiplier
                         } else {
-                            finalKcal = foundFood.kcal * qty
-                            displayName = "$qty $foodKey"
+                            multiplier * foundFood.std
                         }
-                    } else if (countMatch != null) {
-                        val qty = countMatch.groupValues[1].toIntOrNull() ?: 1
-                        finalKcal = if (foundFood.unit == "G" || foundFood.unit == "ML") {
-                            (foundFood.kcal * foundFood.std * qty) / 100
-                        } else {
-                            foundFood.kcal * qty
-                        }
-                        displayName = "$qty $foodKey"
+                        finalKcal = Math.floor((foundFood.kcal * totalWeight) / 100.0).toInt()
+                        displayName = "${totalWeight.toInt()}${foundFood.unit} $foodKey"
                     } else {
-                        finalKcal = if (foundFood.unit == "G" || foundFood.unit == "ML") {
-                            (foundFood.kcal * foundFood.std) / 100
-                        } else {
-                            foundFood.kcal
-                        }
-                        displayName = "1 $foodKey"
+                        finalKcal = Math.floor(foundFood.kcal * multiplier).toInt()
+                        displayName = "${if (multiplier % 1.0 == 0.0) multiplier.toInt() else multiplier} $foodKey"
                     }
                 } else {
-                    val qty = weightMatch?.groupValues?.get(1)?.toIntOrNull() ?: 100
-                    finalKcal = (150 * qty) / 100
-                    displayName = "${qty}G $p"
+                    finalKcal = Math.floor(150.0 * multiplier).toInt()
+                    displayName = "${if (multiplier % 1.0 == 0.0) multiplier.toInt() else multiplier}x $p"
                 }
 
                 totalKcal += finalKcal
@@ -281,23 +345,47 @@ class QuickLogActivity : AppCompatActivity() {
 
     private fun saveToSharedPreferences(mealName: String, itemName: String, kcal: Int) {
         val prefs = getSharedPreferences("cyber_storage", Context.MODE_PRIVATE)
-        val currentConsumed = prefs.getInt("cyber_consumed", 0) + kcal
-        prefs.edit().putInt("cyber_consumed", currentConsumed).apply()
+        val todayDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+        val lastDate = prefs.getString("cyber_last_date", null)
 
-        val unitMap = mapOf("BREAKFAST" to "UNIT_01", "LUNCH" to "UNIT_02", "SNACKS" to "UNIT_03", "DINNER" to "UNIT_04")
-        val targetUnitId = unitMap[mealName] ?: "UNIT_01"
+        val editor = prefs.edit()
 
-        val unitsJsonStr = prefs.getString("cyber_units", null)
-        val unitsArray = if (unitsJsonStr != null) {
-            JSONArray(unitsJsonStr)
-        } else {
-            JSONArray().apply {
+        // 12:00 AM Midnight Clean Sheet Reset Check
+        var currentConsumed = prefs.getInt("cyber_consumed", 0)
+        var unitsArray: JSONArray
+
+        if (lastDate != todayDate) {
+            // New Day Clean Sheet Reset
+            currentConsumed = 0
+            editor.putString("cyber_last_date", todayDate)
+            editor.putInt("cyber_burned", 0)
+            editor.putString("cyber_activities", "[]")
+
+            unitsArray = JSONArray().apply {
                 put(JSONObject().put("id", "UNIT_01").put("label", "BREAKFAST").put("items", JSONArray()))
                 put(JSONObject().put("id", "UNIT_02").put("label", "LUNCH").put("items", JSONArray()))
                 put(JSONObject().put("id", "UNIT_03").put("label", "SNACKS").put("items", JSONArray()))
                 put(JSONObject().put("id", "UNIT_04").put("label", "DINNER").put("items", JSONArray()))
             }
+        } else {
+            val unitsJsonStr = prefs.getString("cyber_units", null)
+            unitsArray = if (unitsJsonStr != null) {
+                JSONArray(unitsJsonStr)
+            } else {
+                JSONArray().apply {
+                    put(JSONObject().put("id", "UNIT_01").put("label", "BREAKFAST").put("items", JSONArray()))
+                    put(JSONObject().put("id", "UNIT_02").put("label", "LUNCH").put("items", JSONArray()))
+                    put(JSONObject().put("id", "UNIT_03").put("label", "SNACKS").put("items", JSONArray()))
+                    put(JSONObject().put("id", "UNIT_04").put("label", "DINNER").put("items", JSONArray()))
+                }
+            }
         }
+
+        currentConsumed += kcal
+        editor.putInt("cyber_consumed", currentConsumed)
+
+        val unitMap = mapOf("BREAKFAST" to "UNIT_01", "LUNCH" to "UNIT_02", "SNACKS" to "UNIT_03", "DINNER" to "UNIT_04")
+        val targetUnitId = unitMap[mealName] ?: "UNIT_01"
 
         for (i in 0 until unitsArray.length()) {
             val unitObj = unitsArray.getJSONObject(i)
@@ -308,6 +396,11 @@ class QuickLogActivity : AppCompatActivity() {
             }
         }
 
-        prefs.edit().putString("cyber_units", unitsArray.toString()).apply()
+        editor.putString("cyber_units", unitsArray.toString())
+        editor.apply()
+
+        // Trigger Instant Multi-Widget Update for 2x1 and 2x2 Widgets
+        QuickAddWidgetProvider.triggerWidgetUpdate(this)
+        MetabolicHudWidgetProvider.triggerWidgetUpdate(this)
     }
 }

@@ -41,11 +41,24 @@ class QuickAddWidgetProvider : AppWidgetProvider() {
         ) {
             val views = RemoteViews(context.packageName, R.layout.widget_quick_add)
 
-            // Read Theme from SharedPreferences
             val prefs = context.getSharedPreferences("cyber_storage", Context.MODE_PRIVATE)
             val activeTheme = prefs.getString("cyber_theme", "GREEN") ?: "GREEN"
 
             when (activeTheme) {
+                "ARCADE" -> {
+                    views.setInt(R.id.widget_root, "setBackgroundResource", R.drawable.widget_bg_arcade)
+                    views.setInt(R.id.widget_open_app_btn, "setBackgroundResource", R.drawable.widget_btn_bg_arcade)
+                    views.setTextColor(R.id.widget_meal_tag, Color.parseColor("#FF4500"))
+                    views.setTextColor(R.id.widget_quick_sub, Color.parseColor("#121316"))
+                    views.setTextColor(R.id.widget_open_app_btn, Color.parseColor("#FFFFFF"))
+                }
+                "SELPHIE" -> {
+                    views.setInt(R.id.widget_root, "setBackgroundResource", R.drawable.widget_bg_selphie)
+                    views.setInt(R.id.widget_open_app_btn, "setBackgroundResource", R.drawable.widget_btn_bg_selphie)
+                    views.setTextColor(R.id.widget_meal_tag, Color.parseColor("#FF2D55"))
+                    views.setTextColor(R.id.widget_quick_sub, Color.parseColor("#F0F0F0"))
+                    views.setTextColor(R.id.widget_open_app_btn, Color.parseColor("#FFFFFF"))
+                }
                 "BEIGE" -> {
                     views.setInt(R.id.widget_root, "setBackgroundResource", R.drawable.widget_bg_beige)
                     views.setInt(R.id.widget_open_app_btn, "setBackgroundResource", R.drawable.widget_btn_bg_beige)
@@ -84,7 +97,7 @@ class QuickAddWidgetProvider : AppWidgetProvider() {
 
             views.setTextViewText(R.id.widget_meal_tag, mealTag)
 
-            // PendingIntent for Quick Log Overlay (Launches QuickLogActivity in an isolated standalone dialog task)
+            // PendingIntent for Quick Log Overlay
             val quickLogIntent = Intent(context, QuickLogActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
                 putExtra("QUICK_LOG_MEAL", mealExtra)

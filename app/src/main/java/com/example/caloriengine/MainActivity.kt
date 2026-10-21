@@ -12,6 +12,7 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import com.example.caloriengine.widget.MetabolicHudWidgetProvider
 import com.example.caloriengine.widget.QuickAddWidgetProvider
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +25,23 @@ class MainActivity : AppCompatActivity() {
             val prefs = context.getSharedPreferences("cyber_storage", Context.MODE_PRIVATE)
             prefs.edit().putString("cyber_theme", theme).apply()
             QuickAddWidgetProvider.triggerWidgetUpdate(context)
+            MetabolicHudWidgetProvider.triggerWidgetUpdate(context)
+        }
+
+        @JavascriptInterface
+        fun saveGoal(goal: String) {
+            val prefs = context.getSharedPreferences("cyber_storage", Context.MODE_PRIVATE)
+            prefs.edit().putString("cyber_goal", goal).apply()
+            QuickAddWidgetProvider.triggerWidgetUpdate(context)
+            MetabolicHudWidgetProvider.triggerWidgetUpdate(context)
+        }
+
+        @JavascriptInterface
+        fun syncTarget(target: Int) {
+            val prefs = context.getSharedPreferences("cyber_storage", Context.MODE_PRIVATE)
+            prefs.edit().putInt("cyber_target", target).apply()
+            QuickAddWidgetProvider.triggerWidgetUpdate(context)
+            MetabolicHudWidgetProvider.triggerWidgetUpdate(context)
         }
 
         @JavascriptInterface
@@ -33,6 +51,8 @@ class MainActivity : AppCompatActivity() {
                 .putInt("cyber_consumed", consumed)
                 .putString("cyber_units", unitsJson)
                 .apply()
+            QuickAddWidgetProvider.triggerWidgetUpdate(context)
+            MetabolicHudWidgetProvider.triggerWidgetUpdate(context)
         }
     }
 
@@ -87,17 +107,23 @@ class MainActivity : AppCompatActivity() {
     private fun syncQuickLogFromPrefs() {
         val prefs = getSharedPreferences("cyber_storage", Context.MODE_PRIVATE)
         val consumed = prefs.getInt("cyber_consumed", -1)
+        val target = prefs.getInt("cyber_target", -1)
         val units = prefs.getString("cyber_units", null)
         val theme = prefs.getString("cyber_theme", "GREEN") ?: "GREEN"
+        val goal = prefs.getString("cyber_goal", "MAINTAIN") ?: "MAINTAIN"
 
         if (consumed >= 0) {
             webView.evaluateJavascript("localStorage.setItem('cyber_consumed', '$consumed');", null)
+        }
+        if (target >= 0) {
+            webView.evaluateJavascript("localStorage.setItem('cyber_target', '$target');", null)
         }
         if (!units.isNullOrEmpty()) {
             val escapedUnits = units.replace("'", "\\'")
             webView.evaluateJavascript("localStorage.setItem('cyber_units', '$escapedUnits');", null)
         }
         webView.evaluateJavascript("localStorage.setItem('cyber_theme', '$theme');", null)
+        webView.evaluateJavascript("localStorage.setItem('cyber_goal', '$goal');", null)
     }
 
     private fun checkQuickLogIntent(intent: Intent?) {
