@@ -1,4 +1,4 @@
-# ⚡ CALORIENGINE // Cyberpunk & Retro Terminal Nutrition System
+# ⚡ caloriengine // Cyberpunk & Retro Terminal Nutrition System
 
 ```
    ██████╗ █████╗ ██╗      ██████╗ ██████╗ ██╗███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███╗   ██╗
@@ -9,7 +9,7 @@
    ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚═╝  ╚═══╝
 ```
 
-> **A high-performance, hardware-themed Android Nutrition, Activity, and Telemetry Engine** built for lifters, biohackers, and cyberpunk enthusiasts. Powered by a single-page React UI running inside a native Android WebView, Jetpack Compose Protocol Hub, and Homescreen Android App Widgets with live Biometric Synthesizer Waveforms.
+> **caloriengine**: A high-performance, hardware-themed Android Nutrition, Activity, and Telemetry Engine built for lifters, biohackers, and cyberpunk enthusiasts. Powered by a single-page React UI running inside a native Android WebView, Jetpack Compose Protocol Hub, and Homescreen Android App Widgets with live Biometric Synthesizer Waveforms.
 
 ---
 
