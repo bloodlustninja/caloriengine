@@ -13,8 +13,20 @@
 
 ---
 
+## 📽️ Live Protocol Demo
+
+<p align="center">
+  <video src="caloriengine_demo.mp4" width="340" autoplay loop muted playsinline></video>
+</p>
+
+---
+
 ## 📸 Key Highlights & Feature Matrix
 
+- **⚡ Instagram Share Sheet Protocol Buffer (Quick-Capture)**:
+  - Instant translucent cyberpunk dialog directly over Instagram via native `android.intent.action.SEND`.
+  - Captures multi-exercise circuits, form variation notes/cues, and target split (`CORE`, `UPPER`, `LOWER`, `AUX`).
+  - Seamless one-tap injection into `ACT_03` workout checklists with live `[ ↗ REEL ]` video launcher to check form during sets.
 - **🎮 3 Hardware Shell Themes**:
   - **Phosphor Green**: Classic Cyberpunk Terminal (`#00FF66`, CRT Scanlines, Pitch Black, Vector Grid)
   - **Atomic Pink Game Boy**: Translucent Lavender / Pink Shell & Cobalt Blue PCB (`#1E3A8A` board with copper traces, `#F4D3EE` pastel bezel, `#EC4899` hot pink 3D buttons)
@@ -57,16 +69,16 @@
          │                                            │
          ├── React 18 + Babel Standalone              ├── Jetpack Compose (Protocol Hub)
          ├── Hardware CSS Custom Variables            ├── App Widgets (Metabolic HUD & Quick Add)
-         └── Local Storage Telemetry Sync             ├── Translucent QuickLogActivity
+         └── Local Storage Telemetry Sync             ├── Translucent QuickLogActivity & Share Sheet Receiver
                                                       └── JavaScript Interface Bridges
 ```
 
 | Layer | Technologies Used |
 | :--- | :--- |
-| **Android Core** | Kotlin, Android SDK 37, Gradle 8.x |
+| **Android Core** | Kotlin, Android SDK 37, Gradle 9.x |
 | **UI Frameworks** | Single-Page React 18 inside WebView + Jetpack Compose |
 | **Widgets** | Android AppWidgetProvider, Canvas Drawing (`Math.sin()` waveforms), RemoteViews |
-| **Database & Nutrition** | ICMR-NIN & IFCT Standard local DB + OpenFoodFacts Live API |
+| **Database & Nutrition** | SQLite Protocol Buffer + ICMR-NIN & IFCT Standard local DB + OpenFoodFacts Live API |
 | **Design System** | Retro Hardware CRT, Phosphor Neon, Translucent Game Boy Shell, Macintosh Platinum |
 
 ---
@@ -76,7 +88,7 @@
 ### Prerequisites
 - Android Studio Ladybug (2024.2.1+) or latest
 - Android SDK 37
-- Kotlin 2.2.10
+- Kotlin 2.0+
 - JDK 17+
 
 ### Building from Source

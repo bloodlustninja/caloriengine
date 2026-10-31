@@ -3,15 +3,23 @@ package com.example.caloriengine.protocol
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.caloriengine.protocol.data.ProtocolBufferRepository
+import com.example.caloriengine.protocol.data.StashedProtocol
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import java.util.Calendar
 
 class ProtocolViewModel(application: Application) : AndroidViewModel(application) {
 
     private val prefs = application.getSharedPreferences("protocol_prefs", Context.MODE_PRIVATE)
+    private val bufferRepository = ProtocolBufferRepository(application)
+
+    // Observable stashed count for ACT_03
+    val stashedCount: StateFlow<Int> = bufferRepository.stashedCount
 
     private val quotes = listOf(
         "\"The resistance that you fight physically in the gym and in life can only build a strong character.\"\n— ARNOLD SCHWARZENEGGER",
@@ -46,6 +54,7 @@ class ProtocolViewModel(application: Application) : AndroidViewModel(application
             )
         }
         updateChecklistForSelectedDay()
+        bufferRepository.refreshCount()
     }
 
     private fun getTodayDayIndex(): Int {
@@ -99,6 +108,71 @@ class ProtocolViewModel(application: Application) : AndroidViewModel(application
         }
         val todayStr = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(java.util.Date())
         prefs.edit().putBoolean("protocol_executed_$todayStr", true).apply()
+    }
+
+    fun onToggleBufferStash() {
+        val willExpand = !_uiState.value.isBufferStashExpanded
+        _uiState.update { it.copy(isBufferStashExpanded = willExpand) }
+        if (willExpand) {
+            viewModelScope.launch {
+                val list = bufferRepository.getActiveStashedProtocols()
+                _uiState.update { it.copy(stashedProtocols = list) }
+            }
+        }
+    }
+
+    fun onInjectStashedProtocol(stashed: StashedProtocol) {
+        viewModelScope.launch {
+            bufferRepository.consumeStashedProtocol(stashed.id)
+            val newExercise = ProtocolExercise(
+                id = "stashed_${stashed.id}",
+                name = stashed.title.uppercase(),
+                setsReps = "3 SETS x 12 REPS [${stashed.targetSplit}]",
+                isDone = false,
+                sourceUrl = stashed.sourceUrl.ifBlank { null },
+                formNotes = stashed.formNotes.ifBlank { null }
+            )
+            _uiState.update { state ->
+                val updatedChecklist = state.todayChecklist + newExercise
+                val updatedStashed = state.stashedProtocols.filter { it.id != stashed.id }
+                state.copy(
+                    todayChecklist = updatedChecklist,
+                    stashedProtocols = updatedStashed
+                )
+            }
+        }
+    }
+
+    fun onInjectAllStashedProtocols() {
+        viewModelScope.launch {
+            val pending = _uiState.value.stashedProtocols
+            val newExercises = pending.map { stashed ->
+                bufferRepository.consumeStashedProtocol(stashed.id)
+                ProtocolExercise(
+                    id = "stashed_${stashed.id}",
+                    name = stashed.title.uppercase(),
+                    setsReps = "3 SETS x 12 REPS [${stashed.targetSplit}]",
+                    isDone = false,
+                    sourceUrl = stashed.sourceUrl.ifBlank { null },
+                    formNotes = stashed.formNotes.ifBlank { null }
+                )
+            }
+            _uiState.update { state ->
+                state.copy(
+                    todayChecklist = state.todayChecklist + newExercises,
+                    stashedProtocols = emptyList(),
+                    isBufferStashExpanded = false
+                )
+            }
+        }
+    }
+
+    fun refreshStashedBuffer() {
+        bufferRepository.refreshCount()
+        viewModelScope.launch {
+            val list = bufferRepository.getActiveStashedProtocols()
+            _uiState.update { it.copy(stashedProtocols = list) }
+        }
     }
 
     private fun updateChecklistForSelectedDay() {

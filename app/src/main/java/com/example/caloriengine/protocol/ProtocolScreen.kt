@@ -1,6 +1,10 @@
 package com.example.caloriengine.protocol
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build.VERSION.SDK_INT
+import android.widget.Toast
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -30,7 +34,6 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.MenuDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -56,6 +59,7 @@ import coil.compose.rememberAsyncImagePainter
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
 import coil.request.ImageRequest
+import com.example.caloriengine.protocol.data.StashedProtocol
 
 // Cyberpunk / Terminal Color Tokens
 val CyberBg = Color(0xFF0A0D0B)
@@ -69,25 +73,34 @@ fun ProtocolScreen(
     viewModel: ProtocolViewModel
 ) {
     val state by viewModel.uiState.collectAsState()
+    val stashedCount by viewModel.stashedCount.collectAsState()
 
     ProtocolScreenContent(
         state = state,
+        stashedCount = stashedCount,
         onQuoteTapped = viewModel::onQuoteTapped,
         onDaySelected = viewModel::onDaySelected,
         onUpdateSplit = viewModel::onUpdateSplit,
         onToggleExercise = viewModel::onToggleExercise,
-        onExecuteProtocol = viewModel::onExecuteProtocol
+        onExecuteProtocol = viewModel::onExecuteProtocol,
+        onToggleBufferStash = viewModel::onToggleBufferStash,
+        onInjectStashed = viewModel::onInjectStashedProtocol,
+        onInjectAllStashed = viewModel::onInjectAllStashedProtocols
     )
 }
 
 @Composable
 fun ProtocolScreenContent(
     state: ProtocolUiState,
+    stashedCount: Int = 0,
     onQuoteTapped: () -> Unit = {},
     onDaySelected: (Int) -> Unit = {},
     onUpdateSplit: (Int, SplitType) -> Unit = { _, _ -> },
     onToggleExercise: (String) -> Unit = {},
-    onExecuteProtocol: () -> Unit = {}
+    onExecuteProtocol: () -> Unit = {},
+    onToggleBufferStash: () -> Unit = {},
+    onInjectStashed: (StashedProtocol) -> Unit = {},
+    onInjectAllStashed: () -> Unit = {}
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -143,7 +156,7 @@ fun ProtocolScreenContent(
                 )
             }
 
-            // C. Today's Protocol Dynamic Card
+            // C. Today's Protocol Dynamic Card (ACT_03)
             item {
                 val selectedSplit = state.weeklySplit[state.selectedDayIndex] ?: SplitType.REST
                 
@@ -151,8 +164,14 @@ fun ProtocolScreenContent(
                     splitType = selectedSplit,
                     checklist = state.todayChecklist,
                     isCompleted = state.isCompleted,
+                    stashedCount = stashedCount,
+                    isBufferStashExpanded = state.isBufferStashExpanded,
+                    stashedProtocols = state.stashedProtocols,
                     onToggleExercise = onToggleExercise,
-                    onExecuteProtocol = onExecuteProtocol
+                    onExecuteProtocol = onExecuteProtocol,
+                    onToggleBufferStash = onToggleBufferStash,
+                    onInjectStashed = onInjectStashed,
+                    onInjectAllStashed = onInjectAllStashed
                 )
             }
         }
@@ -166,7 +185,6 @@ fun HeroBonfireSection(
 ) {
     val context = LocalContext.current
     
-    // Coil ImageLoader configured for animated GIFs
     val imageLoader = remember {
         ImageLoader.Builder(context)
             .components {
@@ -179,7 +197,6 @@ fun HeroBonfireSection(
             .build()
     }
 
-    // Load animated GIF or fallback image
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(context)
             .data("file:///android_asset/cyberpunk_bonfire.gif")
@@ -197,7 +214,6 @@ fun HeroBonfireSection(
             .padding(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Bonfire Hero Container Frame
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -212,7 +228,6 @@ fun HeroBonfireSection(
                 modifier = Modifier.fillMaxSize()
             )
             
-            // Retro Scanline Text Tag Overlay
             Text(
                 text = "NEO_BONFIRE // RECOVERY_NODE",
                 color = CyberPrimary.copy(alpha = 0.6f),
@@ -226,7 +241,6 @@ fun HeroBonfireSection(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        // Retro Dialogue Box
         val infiniteTransition = rememberInfiniteTransition(label = "pulse")
         val alphaAnim by infiniteTransition.animateFloat(
             initialValue = 0.8f,
@@ -351,7 +365,6 @@ fun WeeklySplitSelectorStrip(
                         )
                     }
 
-                    // Split Dropdown Reassignment Menu
                     DropdownMenu(
                         expanded = showMenu,
                         onDismissRequest = { showMenu = false },
@@ -385,9 +398,17 @@ fun ProtocolDynamicCard(
     splitType: SplitType,
     checklist: List<ProtocolExercise>,
     isCompleted: Boolean,
-    onToggleExercise: (String) -> Unit,
-    onExecuteProtocol: () -> Unit
+    stashedCount: Int = 0,
+    isBufferStashExpanded: Boolean = false,
+    stashedProtocols: List<StashedProtocol> = emptyList(),
+    onToggleExercise: (String) -> Unit = {},
+    onExecuteProtocol: () -> Unit = {},
+    onToggleBufferStash: () -> Unit = {},
+    onInjectStashed: (StashedProtocol) -> Unit = {},
+    onInjectAllStashed: () -> Unit = {}
 ) {
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -396,19 +417,47 @@ fun ProtocolDynamicCard(
             .border(1.dp, if (isCompleted) CyberPrimary else CyberPrimaryDim, CutCornerShape(topStart = 12.dp, bottomEnd = 12.dp))
             .padding(16.dp)
     ) {
-        // Card Header
+        // Card Header (ACT_03)
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "TODAY'S PROTOCOL // ${splitType.name}",
-                color = CyberPrimary,
-                fontFamily = FontFamily.Monospace,
-                fontSize = 12.sp,
-                fontWeight = FontWeight.Bold
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Text(
+                    text = "TODAY'S PROTOCOL // ${splitType.name}",
+                    color = CyberPrimary,
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold
+                )
+
+                // Minimal [ BUFFER_STASH (n) ] toggle chip
+                Box(
+                    modifier = Modifier
+                        .clip(CutCornerShape(4.dp))
+                        .background(if (isBufferStashExpanded) CyberPrimary else Color.Black)
+                        .border(
+                            1.dp,
+                            if (stashedCount > 0) CyberPrimary else CyberPrimaryDim,
+                            CutCornerShape(4.dp)
+                        )
+                        .clickable { onToggleBufferStash() }
+                        .padding(horizontal = 6.dp, vertical = 2.dp)
+                ) {
+                    Text(
+                        text = "[ BUFFER_STASH ($stashedCount) ]",
+                        color = if (isBufferStashExpanded) Color.Black else if (stashedCount > 0) CyberPrimary else CyberPrimaryDim,
+                        fontFamily = FontFamily.Monospace,
+                        fontSize = 9.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+
             if (isCompleted) {
                 Text(
                     text = "[ EXECUTED ]",
@@ -417,6 +466,145 @@ fun ProtocolDynamicCard(
                     fontSize = 10.sp,
                     fontWeight = FontWeight.Bold
                 )
+            }
+        }
+
+        // Expandable Stashed Protocols Buffer Queue
+        if (isBufferStashExpanded) {
+            Spacer(modifier = Modifier.height(10.dp))
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Black.copy(alpha = 0.65f))
+                    .border(1.dp, CyberPrimaryDim, CutCornerShape(6.dp))
+                    .padding(8.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "// BUFFER_STASH_QUEUE [ ${stashedProtocols.size} PENDING ]",
+                        color = CyberPrimaryDim,
+                        fontFamily = FontFamily.Monospace,
+                        fontSize = 9.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    if (stashedProtocols.size > 1) {
+                        Text(
+                            text = "[ + INJECT ALL ]",
+                            color = CyberPrimary,
+                            fontFamily = FontFamily.Monospace,
+                            fontSize = 9.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier
+                                .clickable { onInjectAllStashed() }
+                                .padding(4.dp)
+                        )
+                    }
+                }
+
+                if (stashedProtocols.isEmpty()) {
+                    Text(
+                        text = "NO QUEUED PROTOCOL BUFFER TRANSMISSIONS",
+                        color = CyberPrimaryDim,
+                        fontFamily = FontFamily.Monospace,
+                        fontSize = 10.sp,
+                        modifier = Modifier.padding(vertical = 4.dp)
+                    )
+                } else {
+                    stashedProtocols.forEach { stashed ->
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(CyberSurface)
+                                .border(1.dp, CyberPrimaryDim)
+                                .padding(8.dp)
+                        ) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        text = stashed.title,
+                                        color = CyberPrimary,
+                                        fontFamily = FontFamily.Monospace,
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                    Text(
+                                        text = "TARGET: ${stashed.targetSplit}",
+                                        color = CyberPrimaryDim,
+                                        fontFamily = FontFamily.Monospace,
+                                        fontSize = 8.sp
+                                    )
+                                }
+
+                                Row(
+                                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    // Visual Reel Opener Button
+                                    if (stashed.sourceUrl.isNotBlank()) {
+                                        Box(
+                                            modifier = Modifier
+                                                .clip(CutCornerShape(4.dp))
+                                                .background(Color.Black)
+                                                .border(1.dp, CyberWarning, CutCornerShape(4.dp))
+                                                .clickable {
+                                                    openExternalUrl(context, stashed.sourceUrl)
+                                                }
+                                                .padding(horizontal = 6.dp, vertical = 3.dp)
+                                        ) {
+                                            Text(
+                                                text = "[ ↗ REEL ]",
+                                                color = CyberWarning,
+                                                fontFamily = FontFamily.Monospace,
+                                                fontSize = 8.sp,
+                                                fontWeight = FontWeight.Bold
+                                            )
+                                        }
+                                    }
+
+                                    // Inject Button
+                                    Box(
+                                        modifier = Modifier
+                                            .clip(CutCornerShape(4.dp))
+                                            .background(Color.Black)
+                                            .border(1.dp, CyberPrimary, CutCornerShape(4.dp))
+                                            .clickable { onInjectStashed(stashed) }
+                                            .padding(horizontal = 6.dp, vertical = 3.dp)
+                                    ) {
+                                        Text(
+                                            text = "[ + INJECT ]",
+                                            color = CyberPrimary,
+                                            fontFamily = FontFamily.Monospace,
+                                            fontSize = 9.sp,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                    }
+                                }
+                            }
+
+                            // Form Cue / Unorthodox Notes Display
+                            if (stashed.formNotes.isNotBlank()) {
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = "> CUE: ${stashed.formNotes}",
+                                    color = CyberWarning,
+                                    fontFamily = FontFamily.Monospace,
+                                    fontSize = 8.sp,
+                                    lineHeight = 11.sp
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -455,38 +643,75 @@ fun ProtocolDynamicCard(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 checklist.forEach { exercise ->
-                    Row(
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(Color.Black.copy(alpha = 0.5f))
                             .border(1.dp, CyberPrimaryDim)
-                            .clickable { onToggleExercise(exercise.id) }
-                            .padding(horizontal = 8.dp, vertical = 4.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                            .padding(horizontal = 8.dp, vertical = 6.dp)
                     ) {
-                        Checkbox(
-                            checked = exercise.isDone,
-                            onCheckedChange = { onToggleExercise(exercise.id) },
-                            colors = CheckboxDefaults.colors(
-                                checkedColor = CyberPrimary,
-                                uncheckedColor = CyberPrimaryDim,
-                                checkmarkColor = Color.Black
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Checkbox(
+                                checked = exercise.isDone,
+                                onCheckedChange = { onToggleExercise(exercise.id) },
+                                colors = CheckboxDefaults.colors(
+                                    checkedColor = CyberPrimary,
+                                    uncheckedColor = CyberPrimaryDim,
+                                    checkmarkColor = Color.Black
+                                )
                             )
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Column(modifier = Modifier.weight(1f)) {
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(
+                                    text = exercise.name,
+                                    color = if (exercise.isDone) CyberPrimaryDim else CyberPrimary,
+                                    fontFamily = FontFamily.Monospace,
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold
+                                )
+                                Text(
+                                    text = exercise.setsReps,
+                                    color = CyberPrimaryDim,
+                                    fontFamily = FontFamily.Monospace,
+                                    fontSize = 9.sp
+                                )
+                            }
+
+                            // Visual Form Video Reel Link in Live Checklist
+                            if (!exercise.sourceUrl.isNullOrBlank()) {
+                                Box(
+                                    modifier = Modifier
+                                        .clip(CutCornerShape(4.dp))
+                                        .background(Color.Black)
+                                        .border(1.dp, CyberWarning, CutCornerShape(4.dp))
+                                        .clickable {
+                                            openExternalUrl(context, exercise.sourceUrl)
+                                        }
+                                        .padding(horizontal = 6.dp, vertical = 3.dp)
+                                ) {
+                                    Text(
+                                        text = "[ ↗ REEL ]",
+                                        color = CyberWarning,
+                                        fontFamily = FontFamily.Monospace,
+                                        fontSize = 8.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
+                            }
+                        }
+
+                        // Form Cue / Custom Angle Hint Displayed In Checklist
+                        if (!exercise.formNotes.isNullOrBlank()) {
+                            Spacer(modifier = Modifier.height(2.dp))
                             Text(
-                                text = exercise.name,
-                                color = if (exercise.isDone) CyberPrimaryDim else CyberPrimary,
+                                text = "> FORM NOTE: ${exercise.formNotes}",
+                                color = CyberWarning.copy(alpha = 0.85f),
                                 fontFamily = FontFamily.Monospace,
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                text = exercise.setsReps,
-                                color = CyberPrimaryDim,
-                                fontFamily = FontFamily.Monospace,
-                                fontSize = 9.sp
+                                fontSize = 8.sp,
+                                modifier = Modifier.padding(start = 36.dp)
                             )
                         }
                     }
@@ -516,6 +741,17 @@ fun ProtocolDynamicCard(
                 }
             }
         }
+    }
+}
+
+private fun openExternalUrl(context: Context, url: String) {
+    try {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
+        context.startActivity(intent)
+    } catch (_: Exception) {
+        Toast.makeText(context, "Cannot open video link", Toast.LENGTH_SHORT).show()
     }
 }
 

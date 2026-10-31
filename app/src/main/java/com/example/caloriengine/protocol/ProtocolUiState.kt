@@ -1,10 +1,14 @@
 package com.example.caloriengine.protocol
 
+import com.example.caloriengine.protocol.data.StashedProtocol
+
 data class ProtocolExercise(
     val id: String,
     val name: String,
     val setsReps: String,
-    val isDone: Boolean = false
+    val isDone: Boolean = false,
+    val sourceUrl: String? = null,
+    val formNotes: String? = null
 )
 
 enum class SplitType(val label: String) {
@@ -33,5 +37,7 @@ data class ProtocolUiState(
     val currentQuote: String = "Rest if you must, operative. Tomorrow, the iron demands its tithe.",
     val todayChecklist: List<ProtocolExercise> = emptyList(),
     val isCompleted: Boolean = false,
-    val kcalBurnOffset: Int = 300
+    val kcalBurnOffset: Int = 300,
+    val isBufferStashExpanded: Boolean = false,
+    val stashedProtocols: List<StashedProtocol> = emptyList()
 )
