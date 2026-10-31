@@ -16,10 +16,7 @@
 ## 📽️ Live Protocol Demo
 
 <p align="center">
-  <img src="caloriengine_demo.gif" width="360" alt="CalorieEngine Full Telemetry Demo" />
-</p>
-<p align="center">
-  <i>⚡ Full 1080p 60FPS Video: <a href="caloriengine_demo.mp4">Download / Watch MP4</a></i>
+  <img src="caloriengine_demo.gif" width="340" alt="CalorieEngine Full Telemetry Demo" />
 </p>
 
 ---
